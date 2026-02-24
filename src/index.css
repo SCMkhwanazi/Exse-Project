@@ -4,7 +4,7 @@ html, body {
   height: 100%;
   min-height: 100vh;
   font-family: Arial, sans-serif;
-  background-image: url('./assets/pexels-jeremy-bishop-1260133-2923591.jpg');
+  background-color:white;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,8 +14,8 @@ html, body {
 .content {
   text-align: center;
   padding-top: 5%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  background-color: rgb(7, 5, 97);
+  color:white;
   min-height: 300px; /* Ensure it takes up space */
   
 }

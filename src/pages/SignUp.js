@@ -72,12 +72,12 @@ const SignUp = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#121212', minHeight: '100vh', paddingBottom: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <div style={{ backgroundColor: '#12086b', minHeight: '100vh', paddingBottom: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <form style={styles.content} onSubmit={handleSubmit} ref={formRef}>
         <h1 className="text-center ">Sign Up</h1>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="username" placeholder="John Doe"value={formData.name} onChange={handleChange} required />
+          <input type="text" className="form-control" id="username" placeholder="Name"value={formData.name} onChange={handleChange} required />
         </div>
 
         <div className="mb-3">
@@ -100,15 +100,15 @@ const SignUp = () => {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-outline-success w-100">Sign Up</button>
+        <button type="submit" className="btn btn-outline-primary w-100">Sign Up</button>
       </form>
 
       {/* Toast */}
       {showToast && (
         <div className="toast-container position-fixed bottom-0 end-0 p-3" style={{ zIndex: 9999 }}>
-          <div className="toast show align-items-center text-bg-success border-0" role="alert">
+          <div className="toast show align-items-center text-bg-primary border-0" role="alert">
             <div className="d-flex">
-              <div className="toast-body">✅ Sign Up Successful!</div>
+              <div className="toast-body">Sign Up Successful!</div>
               <button type="button" className="btn-close btn-close-white me-2 m-auto" onClick={() => setShowToast(false)}></button>
             </div>
           </div>
@@ -122,17 +122,18 @@ export default SignUp;
 
 const styles = {
   content: {
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    backgroundColor: 'white',
     padding: '60px',
     maxWidth: '500px',
     borderRadius: '10px',
+    color:'black',
   },
   icon: {
     position: 'absolute',
     right: '15px',
     top: '35px',
     cursor: 'pointer',
-    color: '#6c757d',
+    color: '#6c757d'
   },
   message: {
     fontSize: '0.9em',

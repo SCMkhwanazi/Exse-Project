@@ -1,62 +1,54 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import UserPage from './components/UserPage';
-import Header from './components/Header';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import ResetPassword from './components/ResetPassword';
-import HomePage from './components/HomePage';
-import MyeventDetail from './components/MyeventDetail';
-import EventDetail from './components/EventDetail';
-import UserEventDetails from './components/UserEventDetials';
-import MyUserEvents from './components/MyUserEvents';
-import Organiser from './components/Organiser';
-import CreateEvent from './components/CreateEvent';
-import DeleteEvent from './components/DeleteEvent';
-import EditEvent from './components/EditEvent';
-import Calendar from './components/Calendar';
-import UserEvents from './components/UserEvents';
-import UserNotifications from './components/UserNotifications';
-import UserCalendar from './components/UserCalendar';
-import UserFeedback from './components/UserFeedback';
-import Review from './components/Review'; 
-
-
+import WelcomePage from './components/WelcomePage';
+import UserPage from './pages/UserPage';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import AdminPage from './pages/AdminPage'; 
+import DynamicLayout from './layout/DynamicLayout';
+import AdminDynamicLayout from './layout/AdminDynamicLayout';
+import Dashboard from './pages/sidebar/Dashboard';
+import Orders from './pages/sidebar/Orders';
+import Products from './pages/sidebar/Products';
+import Promotions from './pages/sidebar/Promotions';
+import PlaceOrders from './pages/sidebar/PlaceOrders';
+import ViewProducts from './pages/sidebar/ViewProducts';
+import ViewPromotions from './pages/sidebar/ViewPromotions';
+import AdminDashboard from './pages/sidebar/AdminDashboard';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Header /></>}/>
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ResetPassword />} />
-        <Route path="/event/:eventId" element={<EventDetail />} />
-        <Route path="/myevent/:eventId" element={<MyeventDetail />} />
-        <Route path="/userevent/:eventId" element={<UserEventDetails />} />
-        <Route path="/myuserevents/:eventId" element={<MyUserEvents />} />
-        <Route path="/organiser" element={<Organiser />} />
-        <Route path="/create-event" element={<CreateEvent />} />
-        <Route path="/delete-event" element={<DeleteEvent />} />
-        <Route path="/Edit-event" element={<EditEvent />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/review" element={<Review />} />
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/pages/signin" element={<SignIn />} />
+        <Route path="/pages/signup" element={<SignUp />} />
         
-        {/* New user route */}
-        <Route path="/userpage" element={<UserPage />} />
-        <Route path="/userevents" element={<UserEvents />} />
-        <Route path="/usernotifications" element={<UserNotifications />} />
-        <Route path="/usercalendar" element={<UserCalendar />} />
-        <Route path="/userfeedback" element={<UserFeedback />} />
+        {/* UserDashboard Layout Wrapper */}
+        <Route path="/sidebar" element={<DynamicLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="userpage" element={<UserPage />} />
+          <Route path="placeorders" element={<PlaceOrders />} />
+          <Route path="viewproducts" element={<ViewProducts />} />
+          <Route path="viewpromotions" element={<ViewPromotions />} />
+        </Route>
+        {/* AdminDashboard Layout Wrapper */}
+        <Route path="/sidebar" element={<AdminDynamicLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="adminpage" element={<AdminPage />} />
+          <Route path="admindashboard" element={<AdminDashboard />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+          <Route path="promotions" element={<Promotions />} />
+        </Route>
       </Routes>
     </Router>
   );
 }
 
-export default App
-
+export default App;
 
 
 
