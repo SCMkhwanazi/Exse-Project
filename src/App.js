@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage';
-import UserPage from './pages/UserPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import AdminPage from './pages/AdminPage'; 
@@ -29,7 +28,6 @@ function App() {
         <Route path="/sidebar" element={<DynamicLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="userpage" element={<UserPage />} />
           <Route path="placeorders" element={<PlaceOrders />} />
           <Route path="viewproducts" element={<ViewProducts />} />
           <Route path="viewpromotions" element={<ViewPromotions />} />

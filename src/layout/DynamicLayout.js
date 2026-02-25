@@ -5,62 +5,60 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const DynamicLayout = () => {
   return (
-    <div className="d-flex">
+    <div className="d-flex" style={{ minHeight: '100vh' }}>
     
-          {/*Sidebar */}
-          <div style={styles.sidebar}>
-            <h4 className="text-white mb-4">E'xse</h4>
-    
-            <ul className="nav flex-column">
-    
-              <li className="nav-item mb-2">
-                <Link className="nav-link text-white" to="/sidebar/dashboard">
-                  <i className="bi bi-house-door me-2"></i> Dashboard
-                </Link>
-              </li>
-    
-              <li className="nav-item mb-2">
-                <Link className="nav-link text-white" to="/sidebar/placeorders">
-                  <i className="bi bi-bag me-2"></i> Place Orders
-                </Link>
-              </li>
-    
-              <li className="nav-item mb-2">
-                <Link className="nav-link text-white" to="/sidebar/viewproducts">
-                  <i className="bi bi-box me-2"></i> View Products
-                </Link>
-              </li>
-    
-              <li className="nav-item mb-2">
-                <Link className="nav-link text-white" to="/sidebar/viewpromotions">
-                  <i className="bi bi-megaphone me-2"></i> Promotion
-                </Link>
-              </li>
-    
-            </ul>
-    
-            {/*Logout */}
-            <div className="mt-auto">
-              <button
-                className="btn btn-outline-light w-100"
-                onClick={() => {
-                  localStorage.clear();
-                  alert('You have been logged out!');
-                  window.location.href = '/';
-                }}
-              >
-                <i className="bi bi-box-arrow-right me-2"></i> Logout
-              </button>
-            </div>
-          </div>
-    
-    
-          {/* Main Content */}
-          <div style={styles.container}>
-            <div>
-                <Outlet />
-            </div>
-          </div>
+      {/* Sidebar */}
+      <div style={styles.sidebar}>
+        {/* Logo/Brand at top */}
+        <h4 className="text-white mb-4">E'xse</h4>
+
+        {/* Navigation Links - will take available space */}
+        <ul className="nav flex-column flex-grow-1">
+          <li className="nav-item mb-2">
+            <Link className="nav-link text-white" to="/sidebar/dashboard">
+              <i className="bi bi-house-door me-2"></i> Dashboard
+            </Link>
+          </li>
+
+          <li className="nav-item mb-2">
+            <Link className="nav-link text-white" to="/sidebar/placeorders">
+              <i className="bi bi-bag me-2"></i> Place Orders
+            </Link>
+          </li>
+
+          <li className="nav-item mb-2">
+            <Link className="nav-link text-white" to="/sidebar/viewproducts">
+              <i className="bi bi-box me-2"></i> View Products
+            </Link>
+          </li>
+
+          <li className="nav-item mb-2">
+            <Link className="nav-link text-white" to="/sidebar/viewpromotions">
+              <i className="bi bi-megaphone me-2"></i> Promotion
+            </Link>
+          </li>
+        </ul>
+
+        {/* Logout Button - positioned at bottom */}
+        <div style={styles.logoutContainer}>
+          <button
+            className="btn btn-outline-light w-100"
+            onClick={() => {
+              localStorage.clear();
+              window.location.href = '/';
+            }}
+          >
+            <i className="bi bi-box-arrow-right me-2"></i> Logout
+          </button>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div style={styles.container}>
+        <div>
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };
@@ -71,16 +69,25 @@ const styles = {
   sidebar: {
     width: '250px',
     height: '100vh',
-    backgroundColor: 'rgb(7, 5, 97)',
+    backgroundColor: 'rgb(94, 93, 199)',
     padding: '20px',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    position: 'sticky',
+    top: 0,
+    overflowY: 'auto'
+  },
+  logoutContainer: {
+    marginTop: 'auto',
+    paddingTop: '20px',
+    borderTop: '1px solid rgba(255, 255, 255, 0.2)'
   },
   container: {
     flex: 1,
     padding: '30px',
     backgroundColor: '#f8f9fa',
     color: '#212529',
-    minHeight: '100vh'
+    minHeight: '100vh',
+    overflowY: 'auto'
   }
 };
