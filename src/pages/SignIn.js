@@ -66,7 +66,7 @@ const SignIn = () => {
             style={styles.icon}
           />
           <div className="forgot-link">
-            <Link to="/forgot-password">Forgot Password?</Link>
+            <Link to="/pages/resetpassword">Forgot Password?</Link>
           </div>
         </div>
 

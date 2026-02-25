@@ -5,6 +5,7 @@ import WelcomePage from './components/WelcomePage';
 import UserPage from './pages/UserPage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import ResetPassword from './pages/ResetPassword';
 import AdminPage from './pages/AdminPage'; 
 import DynamicLayout from './layout/DynamicLayout';
 import AdminDynamicLayout from './layout/AdminDynamicLayout';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<WelcomePage />} />
         <Route path="/pages/signin" element={<SignIn />} />
         <Route path="/pages/signup" element={<SignUp />} />
+        <Route path="/pages/resetpassword" element={<ResetPassword />} />
         
         {/* UserDashboard Layout Wrapper */}
         <Route path="/sidebar" element={<DynamicLayout />}>
