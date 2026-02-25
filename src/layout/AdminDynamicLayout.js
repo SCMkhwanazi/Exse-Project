@@ -70,7 +70,7 @@ const styles = {
   sidebar: {
     width: '250px',
     height: '100vh',
-    backgroundColor: 'rgb(7, 5, 97)',
+    backgroundColor: '#2d2b4e',
     padding: '20px',
     display: 'flex',
     flexDirection: 'column'
@@ -78,8 +78,8 @@ const styles = {
   container: {
     flex: 1,
     padding: '30px',
-    backgroundColor: '#f8f9fa',
-    color: '#212529',
+    backgroundColor: '#f8f5ff',
+    color: '#2d2b4e',
     minHeight: '100vh'
   }
 };
