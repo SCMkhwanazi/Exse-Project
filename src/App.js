@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import AdminPage from './pages/AdminPage'; 
 import DynamicLayout from './layout/DynamicLayout';
 import AdminDynamicLayout from './layout/AdminDynamicLayout';
 import Dashboard from './pages/sidebar/Dashboard';
@@ -32,10 +31,10 @@ function App() {
           <Route path="viewproducts" element={<ViewProducts />} />
           <Route path="viewpromotions" element={<ViewPromotions />} />
         </Route>
+        
         {/* AdminDashboard Layout Wrapper */}
-        <Route path="/sidebar" element={<AdminDynamicLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="adminpage" element={<AdminPage />} />
+        <Route path="/admin" element={<AdminDynamicLayout />}>
+          <Route index element={<AdminDashboard />} />
           <Route path="admindashboard" element={<AdminDashboard />} />
           <Route path="orders" element={<Orders />} />
           <Route path="products" element={<Products />} />

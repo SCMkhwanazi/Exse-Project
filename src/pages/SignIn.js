@@ -26,7 +26,7 @@ const SignIn = () => {
 
       // Example: choose route based on email
       if (email === "admin@gmail.com") {
-        navigate('/sidebar/adminpage');
+        navigate('/admin/admindashboard');
       } else {
         navigate('/sidebar/dashboard');
       }
