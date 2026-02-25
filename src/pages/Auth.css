@@ -1,0 +1,120 @@
+/* Shared auth styles with purple/dashboard theme */
+.auth-background {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-form {
+    background: white;
+    padding: 60px 40px;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    color: #212529;
+}
+
+.auth-form h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+    color: #333;
+}
+
+.btn-purple {
+    background: #667eea;
+    color: white;
+    border: none;
+}
+
+.btn-purple:hover {
+    background: #5568d3;
+    color: white;
+}
+
+.toggle-icon {
+    position: absolute;
+    right: 15px;
+    top: 35px;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.feedback-message {
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.success-message {
+    color: green;
+}
+
+.error-message {
+    color: red;
+}
+
+.welcome-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.welcome-content {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.welcome-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.welcome-content p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.welcome-buttons .btn {
+    margin: 0 10px;
+}
+
+.about-section {
+    max-width: 800px;
+    margin-top: 60px;
+    text-align: center;
+    color: #fff;
+}
+
+.footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.footer .social-icons a {
+    color: #ccc;
+    margin: 0 8px;
+    font-size: 20px;
+}
+
+.back-to-top {
+    display: block;
+    margin: 20px 0;
+    color: #ffba00;
+}
+
+.contact-info {
+    margin-top: 20px;
+    color: #ccc;
+}

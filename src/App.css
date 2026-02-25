@@ -3,3 +3,24 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
+/* Add this to your index.css or App.css if you want the animations */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Optional: Purple focus effects */
+input:focus {
+  border-color: #8a7be0 !important;
+  box-shadow: 0 0 0 3px rgba(138, 123, 224, 0.1) !important;
+}
+
+
+

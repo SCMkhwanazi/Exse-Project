@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -14,8 +15,11 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [matchMessage, setMatchMessage] = useState('');
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const formRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleToggle = (type) => {
     if (type === 'password') {
@@ -30,35 +34,55 @@ const SignUp = () => {
     const updatedForm = { ...formData, [id]: value };
     setFormData(updatedForm);
 
+    // Password match validation
     if (id === 'password' || id === 'confirmPassword') {
       if (!updatedForm.confirmPassword) {
         setMatchMessage('');
       } else if (updatedForm.password === updatedForm.confirmPassword) {
         setMatchMessage('✅ Passwords match!');
       } else {
-        setMatchMessage('❌ Passwords do not match.');
+        setMatchMessage('❌ Passwords do not match');
       }
     }
   };
 
+  const validateForm = () => {
+    if (formData.password !== formData.confirmPassword) {
+      setMatchMessage('❌ Passwords do not match');
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setMatchMessage('❌ Password must be at least 6 characters');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-            const res = await axios.post('http://localhost:3001/signup', formData);
-            alert(res.data.message);
-        } catch (err) {
-            alert('Error signing up.');
-        }
-
-    if (formData.password !== formData.confirmPassword) {
-      setMatchMessage('❌ Passwords do not match.');
+    
+    if (!validateForm()) {
       return;
     }
 
-    // Simulate success
-    setShowToast(true);
+    setIsLoading(true);
 
-    setTimeout(() => {
+    try {
+      const res = await axios.post('http://localhost:3001/signup', {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password
+      });
+      
+      setToastMessage(res.data.message || 'Sign Up Successful!');
+      setShowToast(true);
+
+      setTimeout(() => {
+        setShowToast(false);
+        navigate('/pages/signin'); // Redirect to sign in after success
+      }, 1500);
+
+      // Reset form
       setFormData({
         username: '',
         email: '',
@@ -66,50 +90,149 @@ const SignUp = () => {
         confirmPassword: '',
       });
       setMatchMessage('');
-      setShowToast(false);
-    }, 1500);
-    
+      
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || 'Error signing up. Please try again.';
+      setToastMessage(errorMessage);
+      setShowToast(true);
+      
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div style={{ backgroundColor: '#12086b', minHeight: '100vh', paddingBottom: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-      <form style={styles.content} onSubmit={handleSubmit} ref={formRef}>
-        <h1 className="text-center ">Sign Up</h1>
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="username" placeholder="Name"value={formData.name} onChange={handleChange} required />
-        </div>
+    <div style={styles.pageContainer}>
+      <div style={styles.formWrapper}>
+        <form style={styles.content} onSubmit={handleSubmit} ref={formRef}>
+          <h1 style={styles.title}>Create Account</h1>
+          <p style={styles.subtitle}>Join E'xse today!</p>
 
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="email" placeholder="name@example.com" value={formData.email} onChange={handleChange} required />
-        </div>
-
-        <div className="mb-3 position-relative">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input type={showPassword ? 'text' : 'password'} className="form-control" id="password" value={formData.password} onChange={handleChange} required />
-          <i className={`bi toggle-icon ${showPassword ? 'bi-eye' : 'bi-eye-slash'}`} onClick={() => handleToggle('password')} style={styles.icon} />
-        </div>
-
-        <div className="mb-3 position-relative">
-          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-          <input type={showConfirmPassword ? 'text' : 'password'} className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-          <i className={`bi toggle-icon ${showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'}`} onClick={() => handleToggle('confirm')} style={styles.icon} />
-          <div className={`feedback-message ${formData.password === formData.confirmPassword ? 'success-message' : 'error-message'}`} style={styles.message}>
-            {matchMessage}
+          {/* Full Name */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="username" style={styles.label}>Full Name</label>
+            <input 
+              type="text" 
+              style={styles.input}
+              id="username" 
+              placeholder="Enter your full name"
+              value={formData.username} 
+              onChange={handleChange} 
+              required 
+            />
           </div>
-        </div>
 
-        <button type="submit" className="btn btn-outline-primary w-100">Sign Up</button>
-      </form>
+          {/* Email */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="email" style={styles.label}>Email address</label>
+            <input 
+              type="email" 
+              style={styles.input}
+              id="email" 
+              placeholder="name@example.com" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
 
-      {/* Toast */}
+          {/* Password */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="password" style={styles.label}>Password</label>
+            <div style={styles.passwordContainer}>
+              <input 
+                type={showPassword ? 'text' : 'password'} 
+                style={styles.passwordInput}
+                id="password" 
+                placeholder="Create a password"
+                value={formData.password} 
+                onChange={handleChange} 
+                required 
+              />
+              <i 
+                className={`bi ${showPassword ? 'bi-eye' : 'bi-eye-slash'}`} 
+                onClick={() => handleToggle('password')} 
+                style={styles.toggleIcon} 
+              />
+            </div>
+          </div>
+
+          {/* Confirm Password */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="confirmPassword" style={styles.label}>Confirm Password</label>
+            <div style={styles.passwordContainer}>
+              <input 
+                type={showConfirmPassword ? 'text' : 'password'} 
+                style={styles.passwordInput}
+                id="confirmPassword" 
+                placeholder="Confirm your password"
+                value={formData.confirmPassword} 
+                onChange={handleChange} 
+                required 
+              />
+              <i 
+                className={`bi ${showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'}`} 
+                onClick={() => handleToggle('confirm')} 
+                style={styles.toggleIcon} 
+              />
+            </div>
+            {matchMessage && (
+              <div style={{
+                ...styles.message,
+                color: matchMessage.includes('✅') ? '#28a745' : '#dc3545'
+              }}>
+                {matchMessage}
+              </div>
+            )}
+          </div>
+
+          {/* Password Requirements */}
+          <div style={styles.requirements}>
+            <p style={styles.requirementsText}>
+              <i className="bi bi-shield-check" style={styles.requirementIcon}></i>
+              Password must be at least 6 characters
+            </p>
+          </div>
+
+          <button 
+            type="submit" 
+            style={styles.signUpButton}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Creating Account...
+              </>
+            ) : (
+              'Sign Up'
+            )}
+          </button>
+          
+          <div style={styles.signinLink}>
+            Already have an account? <Link to="/pages/signin" style={styles.signinText}>Sign In</Link>
+          </div>
+        </form>
+      </div>
+
+      {/* Toast Notification */}
       {showToast && (
-        <div className="toast-container position-fixed bottom-0 end-0 p-3" style={{ zIndex: 9999 }}>
-          <div className="toast show align-items-center text-bg-primary border-0" role="alert">
-            <div className="d-flex">
-              <div className="toast-body">Sign Up Successful!</div>
-              <button type="button" className="btn-close btn-close-white me-2 m-auto" onClick={() => setShowToast(false)}></button>
+        <div style={styles.toastContainer}>
+          <div style={{
+            ...styles.toast,
+            backgroundColor: toastMessage.includes('Error') ? '#dc3545' : '#8a7be0'
+          }}>
+            <div style={styles.toastContent}>
+              <span>{toastMessage}</span>
+              <button
+                style={styles.toastClose}
+                onClick={() => setShowToast(false)}
+              >
+                <i className="bi bi-x"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -121,22 +244,178 @@ const SignUp = () => {
 export default SignUp;
 
 const styles = {
+  pageContainer: {
+    backgroundColor: '#8a7be0', // Purple background matching sign-in page
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px'
+  },
+  
+  formWrapper: {
+    width: '100%',
+    maxWidth: '500px',
+    margin: '0 auto'
+  },
+  
   content: {
     backgroundColor: 'white',
-    padding: '60px',
-    maxWidth: '500px',
-    borderRadius: '10px',
-    color:'black',
+    padding: '50px 40px',
+    borderRadius: '20px',
+    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)'
   },
-  icon: {
+  
+  title: {
+    fontSize: '36px',
+    fontWeight: '700',
+    color: '#2d2b4e',
+    textAlign: 'center',
+    marginBottom: '10px'
+  },
+  
+  subtitle: {
+    fontSize: '16px',
+    color: '#5f5a8a',
+    textAlign: 'center',
+    marginBottom: '30px'
+  },
+  
+  inputGroup: {
+    marginBottom: '20px'
+  },
+  
+  label: {
+    display: 'block',
+    fontSize: '14px',
+    fontWeight: '600',
+    color: '#2d2b4e',
+    marginBottom: '8px'
+  },
+  
+  input: {
+    width: '100%',
+    padding: '12px 16px',
+    fontSize: '15px',
+    border: '2px solid #e0e0e0',
+    borderRadius: '10px',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    backgroundColor: '#f8f9fa'
+  },
+  
+  passwordContainer: {
+    position: 'relative',
+    width: '100%'
+  },
+  
+  passwordInput: {
+    width: '100%',
+    padding: '12px 45px 12px 16px',
+    fontSize: '15px',
+    border: '2px solid #e0e0e0',
+    borderRadius: '10px',
+    outline: 'none',
+    transition: 'border-color 0.3s ease',
+    backgroundColor: '#f8f9fa'
+  },
+  
+  toggleIcon: {
     position: 'absolute',
     right: '15px',
-    top: '35px',
+    top: '50%',
+    transform: 'translateY(-50%)',
     cursor: 'pointer',
-    color: '#6c757d'
+    color: '#8a7be0',
+    fontSize: '18px',
+    zIndex: 10
   },
+  
   message: {
-    fontSize: '0.9em',
-    marginTop: '5px',
+    fontSize: '14px',
+    marginTop: '8px',
+    fontWeight: '500'
+  },
+  
+  requirements: {
+    marginBottom: '25px',
+    padding: '10px',
+    backgroundColor: '#f8f5ff',
+    borderRadius: '8px'
+  },
+  
+  requirementsText: {
+    fontSize: '13px',
+    color: '#5f5a8a',
+    margin: 0,
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px'
+  },
+  
+  requirementIcon: {
+    color: '#8a7be0',
+    fontSize: '16px'
+  },
+  
+  signUpButton: {
+    width: '100%',
+    padding: '14px',
+    backgroundColor: '#8a7be0',
+    color: 'white',
+    border: 'none',
+    borderRadius: '10px',
+    fontSize: '16px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+    marginBottom: '20px'
+  },
+  
+  signinLink: {
+    textAlign: 'center',
+    fontSize: '15px',
+    color: '#5f5a8a'
+  },
+  
+  signinText: {
+    color: '#8a7be0',
+    textDecoration: 'none',
+    fontWeight: '600',
+    marginLeft: '5px'
+  },
+  
+  toastContainer: {
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px',
+    zIndex: 9999
+  },
+  
+  toast: {
+    color: 'white',
+    padding: '15px 25px',
+    borderRadius: '10px',
+    boxShadow: '0 5px 15px rgba(138, 123, 224, 0.3)',
+    animation: 'slideIn 0.3s ease'
+  },
+  
+  toastContent: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '20px'
+  },
+  
+  toastClose: {
+    background: 'none',
+    border: 'none',
+    color: 'white',
+    fontSize: '20px',
+    cursor: 'pointer',
+    padding: '0',
+    display: 'flex',
+    alignItems: 'center'
   }
 };
+
+// Add this to your global CSS

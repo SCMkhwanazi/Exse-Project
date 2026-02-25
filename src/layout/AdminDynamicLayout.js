@@ -13,26 +13,26 @@ const AdminDynamicLayout = () => {
     
             <ul className="nav flex-column">
 
-                <li className="nav-item mb-2">
-                                <Link className="nav-link text-white" to="/sidebar/admindashboard">
+            <li className="nav-item mb-2">
+                                <Link className="nav-link text-white" to="/admin/admindashboard">
                                   <i className="bi bi-house-door me-2"></i> Dashboard
                                 </Link>
                               </li>
                     
                               <li className="nav-item mb-2">
-                                <Link className="nav-link text-white" to="/sidebar/orders">
-                                  <i className="bi bi-bag me-2"></i> Place Orders
+                                <Link className="nav-link text-white" to="/admin/orders">
+                                  <i className="bi bi-bag me-2"></i> Orders
                                 </Link>
                               </li>
                     
                               <li className="nav-item mb-2">
-                                <Link className="nav-link text-white" to="/sidebar/products">
+                                <Link className="nav-link text-white" to="/admin/products">
                                   <i className="bi bi-box me-2"></i> View Products
                                 </Link>
                               </li>
                     
                               <li className="nav-item mb-2">
-                                <Link className="nav-link text-white" to="/sidebar/promotions">
+                                <Link className="nav-link text-white" to="/admin/promotions">
                                   <i className="bi bi-megaphone me-2"></i> Promotion
                                 </Link>
                               </li>
@@ -70,7 +70,7 @@ const styles = {
   sidebar: {
     width: '250px',
     height: '100vh',
-    backgroundColor: 'rgb(7, 5, 97)',
+    backgroundColor: '#2d2b4e',
     padding: '20px',
     display: 'flex',
     flexDirection: 'column'
@@ -78,8 +78,8 @@ const styles = {
   container: {
     flex: 1,
     padding: '30px',
-    backgroundColor: '#f8f9fa',
-    color: '#212529',
+    backgroundColor: '#f8f5ff',
+    color: '#2d2b4e',
     minHeight: '100vh'
   }
 };
