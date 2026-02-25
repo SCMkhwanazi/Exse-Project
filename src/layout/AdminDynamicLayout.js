@@ -21,7 +21,7 @@ const AdminDynamicLayout = () => {
                     
                               <li className="nav-item mb-2">
                                 <Link className="nav-link text-white" to="/sidebar/orders">
-                                  <i className="bi bi-bag me-2"></i> Place Orders
+                                  <i className="bi bi-bag me-2"></i> Orders
                                 </Link>
                               </li>
                     
