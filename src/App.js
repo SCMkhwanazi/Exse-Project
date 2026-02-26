@@ -28,7 +28,7 @@ function App() {
         <Route path="/pages/resetpassword" element={<ResetPassword />} />
         
         {/* UserDashboard Layout Wrapper */}
-        <Route path="/sidebar" element={<DynamicLayout />}>
+        <Route path="/sidebar" element={<RequireRole role={["user","driver"]}><DynamicLayout /></RequireRole>}>
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="placeorders" element={<PlaceOrders />} />
@@ -45,7 +45,11 @@ function App() {
         </Route>
         
         {/* AdminDashboard Layout Wrapper */}
-        <Route path="/admin" element={<AdminDynamicLayout />}>
+        <Route path="/admin" element={
+          <RequireRole role="admin">
+            <AdminDynamicLayout />
+          </RequireRole>
+        }>
           <Route index element={<AdminDashboard />} />
           <Route path="admindashboard" element={<AdminDashboard />} />
           <Route path="orders" element={<Orders />} />

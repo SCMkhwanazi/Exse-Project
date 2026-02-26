@@ -23,8 +23,14 @@ const DriverDashboard = () => {
 
   // Mock data - In real app, this would come from an API
   useEffect(() => {
-    // Simulate fetching driver data
-    const mockDeliveries = [
+    // load from localStorage if available
+    const stored = localStorage.getItem('driverDeliveries');
+    let mockDeliveries;
+    if (stored) {
+      mockDeliveries = JSON.parse(stored);
+    } else {
+      // Simulate fetching driver data
+      mockDeliveries = [
       {
         id: 'ORD-001',
         customer: 'John Smith',
@@ -86,6 +92,7 @@ const DriverDashboard = () => {
         phone: '+1 (555) 567-8901'
       }
     ];
+  }
 
     setDeliveries(mockDeliveries);
 
@@ -108,9 +115,11 @@ const DriverDashboard = () => {
 
   const handleStatusUpdate = (orderId, newStatus) => {
     // Update delivery status
-    setDeliveries(prev => 
-      prev.map(d => d.id === orderId ? { ...d, status: newStatus } : d)
-    );
+    setDeliveries(prev => {
+      const updated = prev.map(d => d.id === orderId ? { ...d, status: newStatus } : d);
+      localStorage.setItem('driverDeliveries', JSON.stringify(updated));
+      return updated;
+    });
 
     // Show toast notification
     setToastMessage(`Order ${orderId} marked as ${newStatus}`);

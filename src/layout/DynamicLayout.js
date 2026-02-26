@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import Header from '../components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -84,8 +85,9 @@ const DynamicLayout = () => {
       </div>
 
       {/* Main Content */}
-      <div style={styles.container}>
-        <div>
+      <div style={{flex:1, display:'flex', flexDirection:'column'}}>
+        <Header />
+        <div style={styles.container}>
           <Outlet />
         </div>
       </div>

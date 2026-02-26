@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const formRef = useRef(null);
@@ -18,23 +19,26 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Fake login logic (frontend only)
-    setShowToast(true);
+    // Simple localStorage authentication
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email && u.password === password);
+    if (!user) {
+      setToastMessage('Invalid email or password');
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      return;
+    }
 
+    setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
-
-      // Example: choose route based on email
-      // Admin users go to admin dashboard, drivers go to driver dashboard,
-      // anyone else lands on the regular user dashboard.
-      if (email === "admin@gmail.com") {
-        localStorage.setItem('role', 'admin');
+      localStorage.setItem('role', user.role);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      if (user.role === 'admin') {
         navigate('/admin/admindashboard');
-      } else if (email === "driver@gmail.com") {
-        localStorage.setItem('role', 'driver');
+      } else if (user.role === 'driver') {
         navigate('/sidebar/driver');
       } else {
-        localStorage.setItem('role', 'user');
         navigate('/sidebar/dashboard');
       }
     }, 1000);
@@ -48,7 +52,7 @@ const SignIn = () => {
           <div style={styles.toast}>
             <div style={styles.toastContent}>
               <i className="bi bi-check-circle-fill" style={styles.toastIcon}></i>
-              <span style={styles.toastMessage}>Sign In Successful!</span>
+              <span style={styles.toastMessage}>{toastMessage || 'Sign In Successful!'}</span>
             </div>
           </div>
         </div>

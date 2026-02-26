@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -10,6 +9,7 @@ const SignUp = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    role: 'user' // default role
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -58,7 +58,7 @@ const SignUp = () => {
     return true;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!validateForm()) {
@@ -67,41 +67,43 @@ const SignUp = () => {
 
     setIsLoading(true);
 
-    try {
-      const res = await axios.post('http://localhost:3001/signup', {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password
-      });
-      
-      setToastMessage(res.data.message || 'Sign Up Successful!');
+    // simple localStorage user database
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const exists = users.find(u => u.email === formData.email);
+    if (exists) {
+      setToastMessage('Email is already registered');
       setShowToast(true);
-
-      setTimeout(() => {
-        setShowToast(false);
-        navigate('/pages/signin'); // Redirect to sign in after success
-      }, 1500);
-
-      // Reset form
-      setFormData({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
-      setMatchMessage('');
-      
-    } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Error signing up. Please try again.';
-      setToastMessage(errorMessage);
-      setShowToast(true);
-      
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-    } finally {
       setIsLoading(false);
+      setTimeout(() => setShowToast(false), 3000);
+      return;
     }
+
+    users.push({
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      role: formData.role
+    });
+    localStorage.setItem('users', JSON.stringify(users));
+
+    setToastMessage('Sign Up Successful!');
+    setShowToast(true);
+
+    setTimeout(() => {
+      setShowToast(false);
+      navigate('/pages/signin'); // Redirect to sign in after success
+    }, 1500);
+
+    // Reset form
+    setFormData({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      role: 'user'
+    });
+    setMatchMessage('');
+    setIsLoading(false);
   };
 
   return (
@@ -123,6 +125,20 @@ const SignUp = () => {
               onChange={handleChange} 
               required 
             />
+          </div>
+
+          {/* Role selection */}
+          <div style={styles.inputGroup}>
+            <label htmlFor="role" style={styles.label}>I am a</label>
+            <select
+              id="role"
+              value={formData.role}
+              onChange={handleChange}
+              style={styles.input}
+            >
+              <option value="user">Customer</option>
+              <option value="driver">Driver</option>
+            </select>
           </div>
 
           {/* Email */}
