@@ -25,9 +25,16 @@ const SignIn = () => {
       setShowToast(false);
 
       // Example: choose route based on email
+      // Admin users go to admin dashboard, drivers go to driver dashboard,
+      // anyone else lands on the regular user dashboard.
       if (email === "admin@gmail.com") {
+        localStorage.setItem('role', 'admin');
         navigate('/admin/admindashboard');
+      } else if (email === "driver@gmail.com") {
+        localStorage.setItem('role', 'driver');
+        navigate('/sidebar/driver');
       } else {
+        localStorage.setItem('role', 'user');
         navigate('/sidebar/dashboard');
       }
     }, 1000);

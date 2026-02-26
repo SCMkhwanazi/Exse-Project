@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const DynamicLayout = () => {
+  const role = localStorage.getItem('role');
+  const isDriver = role === 'driver';
+
   return (
     <div className="d-flex" style={{ minHeight: '100vh' }}>
     
@@ -14,29 +17,56 @@ const DynamicLayout = () => {
 
         {/* Navigation Links - will take available space */}
         <ul className="nav flex-column flex-grow-1">
-          <li className="nav-item mb-2">
-            <Link className="nav-link text-white" to="/sidebar/dashboard">
-              <i className="bi bi-house-door me-2"></i> Dashboard
-            </Link>
-          </li>
+          {isDriver ? (
+            <>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/driver/deliveries">
+                  <i className="bi bi-truck me-2"></i> Active Deliveries
+                </Link>
+              </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/driver/history">
+                  <i className="bi bi-clock-history me-2"></i> Delivery History
+                </Link>
+              </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/driver/earnings">
+                  <i className="bi bi-graph-up me-2"></i> Earnings
+                </Link>
+              </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/driver/profile">
+                  <i className="bi bi-person me-2"></i> Profile
+                </Link>
+              </li>
+            </>
+          ) : (
+            <> 
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/dashboard">
+                  <i className="bi bi-house-door me-2"></i> Dashboard
+                </Link>
+              </li>
 
-          <li className="nav-item mb-2">
-            <Link className="nav-link text-white" to="/sidebar/placeorders">
-              <i className="bi bi-bag me-2"></i> Place Orders
-            </Link>
-          </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/placeorders">
+                  <i className="bi bi-bag me-2"></i> Place Orders
+                </Link>
+              </li>
 
-          <li className="nav-item mb-2">
-            <Link className="nav-link text-white" to="/sidebar/viewproducts">
-              <i className="bi bi-box me-2"></i> View Products
-            </Link>
-          </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/viewproducts">
+                  <i className="bi bi-box me-2"></i> View Products
+                </Link>
+              </li>
 
-          <li className="nav-item mb-2">
-            <Link className="nav-link text-white" to="/sidebar/viewpromotions">
-              <i className="bi bi-megaphone me-2"></i> Promotion
-            </Link>
-          </li>
+              <li className="nav-item mb-2">
+                <Link className="nav-link text-white" to="/sidebar/viewpromotions">
+                  <i className="bi bi-megaphone me-2"></i> Promotion
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
 
         {/* Logout Button - positioned at bottom */}

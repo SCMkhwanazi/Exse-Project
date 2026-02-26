@@ -15,6 +15,8 @@ import PlaceOrders from './pages/sidebar/PlaceOrders';
 import ViewProducts from './pages/sidebar/ViewProducts';
 import ViewPromotions from './pages/sidebar/ViewPromotions';
 import AdminDashboard from './pages/sidebar/AdminDashboard';
+import RequireRole from './components/RequireRole';
+import DriverDashboard from './pages/DriveDashboard';
 
 function App() {
   return (
@@ -32,6 +34,14 @@ function App() {
           <Route path="placeorders" element={<PlaceOrders />} />
           <Route path="viewproducts" element={<ViewProducts />} />
           <Route path="viewpromotions" element={<ViewPromotions />} />
+          <Route
+            path="driver/*"
+            element={
+              <RequireRole role="driver">
+                <DriverDashboard />
+              </RequireRole>
+            }
+          />
         </Route>
         
         {/* AdminDashboard Layout Wrapper */}
