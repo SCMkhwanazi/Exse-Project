@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PlaceOrders.css';
 
 const PlaceOrders = () => {
@@ -6,6 +6,17 @@ const PlaceOrders = () => {
     const [selectedRestaurant, setSelectedRestaurant] = useState(null);
     const [orderPlaced, setOrderPlaced] = useState(false);
     const [showToast, setShowToast] = useState(false);
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+    fetch("http://localhost:3001/api/orders")
+        .then(res => res.json())
+        .then(data => {
+            console.log("Orders fetched:", data);
+            setOrders(data);
+        })
+        .catch(err => console.error("Error fetching orders:", err));
+}, []);
 
     const restaurants = [
         {

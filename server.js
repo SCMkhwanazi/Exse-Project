@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Msanda@1697',
+    password: 'root',
     database: 'user_auth',
 });
 
@@ -154,4 +154,80 @@ app.get('/api/events', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
+});
+// GET all orders
+app.get('/api/orders', (req, res) => {
+    const sql = `
+        SELECT o.id AS orderId, o.total, o.status, o.created_at, u.username
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        ORDER BY o.created_at DESC
+    `;
+    
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching orders:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(results);
+    });
+});
+// Get all orders with items
+app.get('/api/orders', (req, res) => {
+  const sql = `
+    SELECT 
+      o.id AS order_id,
+      o.created_at,
+      o.total,
+      o.status,
+      u.username,
+      p.name AS product_name,
+      oi.quantity,
+      p.price
+    FROM orders o
+    JOIN users u ON o.user_id = u.id
+    JOIN order_items oi ON o.id = oi.order_id
+    JOIN products p ON oi.product_id = p.id
+    ORDER BY o.created_at DESC
+  `;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error fetching orders:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json(results);
+  });
+});
+// POST /api/orders → Create a new order with items
+app.post('/api/orders', (req, res) => {
+    const { userId, items, total } = req.body;
+
+    if (!userId || !items || items.length === 0 || !total) {
+        return res.status(400).json({ message: 'Invalid order data' });
+    }
+
+    // 1️⃣ Insert into orders table
+    const orderSql = 'INSERT INTO orders (user_id, total, status, created_at) VALUES (?, ?, ?, NOW())';
+    db.query(orderSql, [userId, total, 'pending'], (err, orderResult) => {
+        if (err) {
+            console.error('Error inserting order:', err);
+            return res.status(500).json({ message: 'Database error while creating order' });
+        }
+
+        const orderId = orderResult.insertId;
+
+        // 2️⃣ Prepare items for insertion into order_items
+        const orderItemsValues = items.map(item => [orderId, item.productId, item.quantity]);
+
+        const orderItemsSql = 'INSERT INTO order_items (order_id, product_id, quantity) VALUES ?';
+        db.query(orderItemsSql, [orderItemsValues], (err2, itemsResult) => {
+            if (err2) {
+                console.error('Error inserting order items:', err2);
+                return res.status(500).json({ message: 'Database error while adding order items' });
+            }
+
+            res.json({ message: 'Order placed successfully!', orderId });
+        });
+    });
 });
