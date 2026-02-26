@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import DataService from '../utils/dataService';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -67,8 +68,8 @@ const SignUp = () => {
 
     setIsLoading(true);
 
-    // simple localStorage user database
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    // use data service for users
+    const users = DataService.getUsers();
     const exists = users.find(u => u.email === formData.email);
     if (exists) {
       setToastMessage('Email is already registered');
@@ -78,13 +79,12 @@ const SignUp = () => {
       return;
     }
 
-    users.push({
+    DataService.addUser({
       username: formData.username,
       email: formData.email,
       password: formData.password,
       role: formData.role
     });
-    localStorage.setItem('users', JSON.stringify(users));
 
     setToastMessage('Sign Up Successful!');
     setShowToast(true);

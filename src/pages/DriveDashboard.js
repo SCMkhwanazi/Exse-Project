@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import DataService from '../utils/dataService';
 
 const DriverDashboard = () => {
   const [activeTab, setActiveTab] = useState('deliveries');
@@ -21,90 +22,22 @@ const DriverDashboard = () => {
     onlineHours: 0
   });
 
-  // Mock data - In real app, this would come from an API
+  // load deliveries from shared store and filter by current driver
   useEffect(() => {
-    // load from localStorage if available
-    const stored = localStorage.getItem('driverDeliveries');
-    let mockDeliveries;
-    if (stored) {
-      mockDeliveries = JSON.parse(stored);
-    } else {
-      // Simulate fetching driver data
-      mockDeliveries = [
-      {
-        id: 'ORD-001',
-        customer: 'John Smith',
-        address: '123 Main St, Apt 4B',
-        restaurant: 'Pizza Palace',
-        items: ['Margherita Pizza', 'Garlic Bread'],
-        total: '$18.98',
-        status: 'pending',
-        distance: '2.3 miles',
-        estimatedTime: '15 min',
-        phone: '+1 (555) 123-4567'
-      },
-      {
-        id: 'ORD-002',
-        customer: 'Sarah Johnson',
-        address: '456 Oak Ave',
-        restaurant: 'Burger Hub',
-        items: ['Classic Burger', 'French Fries'],
-        total: '$14.98',
-        status: 'accepted',
-        distance: '1.8 miles',
-        estimatedTime: '12 min',
-        phone: '+1 (555) 234-5678'
-      },
-      {
-        id: 'ORD-003',
-        customer: 'Mike Wilson',
-        address: '789 Pine Rd',
-        restaurant: 'Noodle House',
-        items: ['Pad Thai', 'Spring Rolls'],
-        total: '$18.98',
-        status: 'in-transit',
-        distance: '3.1 miles',
-        estimatedTime: '20 min',
-        phone: '+1 (555) 345-6789'
-      },
-      {
-        id: 'ORD-004',
-        customer: 'Emily Brown',
-        address: '321 Elm St',
-        restaurant: 'Pizza Palace',
-        items: ['Pepperoni Pizza'],
-        total: '$14.99',
-        status: 'completed',
-        distance: '1.2 miles',
-        completedTime: '10 min ago',
-        phone: '+1 (555) 456-7890'
-      },
-      {
-        id: 'ORD-005',
-        customer: 'David Lee',
-        address: '654 Cedar Ln',
-        restaurant: 'Burger Hub',
-        items: ['Cheese Burger', 'Onion Rings'],
-        total: '$15.98',
-        status: 'completed',
-        distance: '2.5 miles',
-        completedTime: '25 min ago',
-        phone: '+1 (555) 567-8901'
-      }
-    ];
-  }
+    const all = DataService.getDeliveries();
+    const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    const my = all.filter(d => d.driverEmail === current.email);
+    setDeliveries(my);
 
-    setDeliveries(mockDeliveries);
-
-    // Calculate stats
-    const completed = mockDeliveries.filter(d => d.status === 'completed').length;
-    const pending = mockDeliveries.filter(d => ['pending', 'accepted', 'in-transit'].includes(d.status)).length;
-    const earnings = mockDeliveries
-      .filter(d => d.status === 'completed')
+    // calculate stats
+    const completed = my.filter(d => d.status === 'Completed' || d.status === 'completed').length;
+    const pending = my.filter(d => !['Completed','completed','Cancelled','cancelled'].includes(d.status)).length;
+    const earnings = my
+      .filter(d => d.status === 'Completed' || d.status === 'completed')
       .reduce((sum, d) => sum + parseFloat(d.total.replace('$', '')), 0);
 
     setDriverStats({
-      totalDeliveries: mockDeliveries.length,
+      totalDeliveries: my.length,
       completedDeliveries: completed,
       pendingDeliveries: pending,
       totalEarnings: earnings,
@@ -113,11 +46,31 @@ const DriverDashboard = () => {
     });
   }, []);
 
+  // recalc stats whenever deliveries change
+  useEffect(() => {
+    const completed = deliveries.filter(d => d.status === 'Completed' || d.status === 'completed').length;
+    const pending = deliveries.filter(d => !['Completed','completed','Cancelled','cancelled'].includes(d.status)).length;
+    const earnings = deliveries
+      .filter(d => d.status === 'Completed' || d.status === 'completed')
+      .reduce((sum, d) => sum + parseFloat(d.total.replace('$', '')), 0);
+
+    setDriverStats(prev => ({
+      ...prev,
+      totalDeliveries: deliveries.length,
+      completedDeliveries: completed,
+      pendingDeliveries: pending,
+      totalEarnings: earnings
+    }));
+  }, [deliveries]);
+
   const handleStatusUpdate = (orderId, newStatus) => {
     // Update delivery status
     setDeliveries(prev => {
       const updated = prev.map(d => d.id === orderId ? { ...d, status: newStatus } : d);
-      localStorage.setItem('driverDeliveries', JSON.stringify(updated));
+      // update global store as well
+      const all = DataService.getDeliveries();
+      const newAll = all.map(d => d.id === orderId ? { ...d, status: newStatus } : d);
+      DataService.saveDeliveries(newAll);
       return updated;
     });
 
@@ -126,19 +79,7 @@ const DriverDashboard = () => {
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
 
-    // Update stats if completed
-    if (newStatus === 'completed') {
-      const completedOrder = deliveries.find(d => d.id === orderId);
-      if (completedOrder) {
-        const earnings = parseFloat(completedOrder.total.replace('$', ''));
-        setDriverStats(prev => ({
-          ...prev,
-          completedDeliveries: prev.completedDeliveries + 1,
-          pendingDeliveries: prev.pendingDeliveries - 1,
-          totalEarnings: prev.totalEarnings + earnings
-        }));
-      }
-    }
+    // stats recalculation will happen in effect below
   };
 
   const handleAcceptDelivery = (orderId) => {

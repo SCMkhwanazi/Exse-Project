@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link, useNavigate } from 'react-router-dom';
+import DataService from '../utils/dataService';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +20,8 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple localStorage authentication
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    // Authenticate through data service
+    const users = DataService.getUsers();
     const user = users.find(u => u.email === email && u.password === password);
     if (!user) {
       setToastMessage('Invalid email or password');

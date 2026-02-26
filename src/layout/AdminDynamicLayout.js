@@ -37,7 +37,11 @@ const AdminDynamicLayout = () => {
                                   <i className="bi bi-megaphone me-2"></i> Promotion
                                 </Link>
                               </li>
-    </ul>
+                              <li className="nav-item mb-2">
+                                <Link className="nav-link text-white" to="/admin/deliveries">
+                                  <i className="bi bi-truck me-2"></i> Deliveries
+                                </Link>
+                              </li>    </ul>
     
             {/*Logout */}
             <div className="mt-auto">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DataService from '../../utils/dataService';
 import './PlaceOrders.css';
 
 const PlaceOrders = () => {
@@ -72,6 +73,19 @@ const PlaceOrders = () => {
             alert('Your cart is empty! Add some items first.');
             return;
         }
+
+        // persist order to "backend"
+        const current = JSON.parse(localStorage.getItem('currentUser') || '{}');
+        const newOrder = {
+            id: `ORD-${Date.now()}`,
+            customerName: current.username || current.email || 'Guest',
+            customerEmail: current.email || 'guest',
+            date: new Date().toISOString().split('T')[0],
+            items: cart,
+            total: total,
+            status: 'Pending'
+        };
+        DataService.addOrder(newOrder);
 
         // Show order placed toast and clear cart immediately
         setShowToast(true);

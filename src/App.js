@@ -15,6 +15,7 @@ import PlaceOrders from './pages/sidebar/PlaceOrders';
 import ViewProducts from './pages/sidebar/ViewProducts';
 import ViewPromotions from './pages/sidebar/ViewPromotions';
 import AdminDashboard from './pages/sidebar/AdminDashboard';
+import Deliveries from './pages/sidebar/Deliveries';
 import RequireRole from './components/RequireRole';
 import DriverDashboard from './pages/DriveDashboard';
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="products" element={<Products />} />
           <Route path="promotions" element={<Promotions />} />
+          <Route path="deliveries" element={<Deliveries />} />
         </Route>
       </Routes>
     </Router>

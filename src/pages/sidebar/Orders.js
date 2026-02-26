@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminDashboard.css';
+import DataService from '../../utils/dataService';
 
 const Orders = () => {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        setOrders(DataService.getOrders());
+    }, []);
+
+    const updateStatus = (id, status) => {
+        const updated = orders.map(o => o.id === id ? { ...o, status } : o);
+        setOrders(updated);
+        DataService.updateOrder(updated.find(o => o.id === id));
+    };
+
     return(
         <div className="admin-page">
             {/* Header */}
@@ -26,42 +39,34 @@ const Orders = () => {
                     <thead>
                         <tr>
                             <th>Order ID</th>
-                            <th>Customer Name</th>
+                            <th>Customer</th>
                             <th>Date</th>
-                            <th>Items</th>
                             <th>Total</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#ORD-001</td>
-                            <td>John Doe</td>
-                            <td>2024-01-15</td>
-                            <td>3 items</td>
-                            <td>$45.99</td>
-                            <td><span className="status-badge completed">Completed</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-002</td>
-                            <td>Jane Smith</td>
-                            <td>2024-01-14</td>
-                            <td>5 items</td>
-                            <td>$78.50</td>
-                            <td><span className="status-badge pending">Pending</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-003</td>
-                            <td>Bob Wilson</td>
-                            <td>2024-01-13</td>
-                            <td>2 items</td>
-                            <td>$32.00</td>
-                            <td><span className="status-badge active">Processing</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
+                        {orders.map(order => (
+                            <tr key={order.id}>
+                                <td>{order.id}</td>
+                                <td>{order.customerName || order.customerEmail}</td>
+                                <td>{order.date}</td>
+                                <td>${order.total}</td>
+                                <td>
+                                    <select
+                                        value={order.status}
+                                        onChange={e => updateStatus(order.id, e.target.value)}
+                                    >
+                                        <option>Pending</option>
+                                        <option>Processing</option>
+                                        <option>Completed</option>
+                                        <option>Cancelled</option>
+                                    </select>
+                                </td>
+                                <td><button className="admin-btn">View</button></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

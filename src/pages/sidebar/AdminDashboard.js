@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './AdminDashboard.css';
+import DataService from '../../utils/dataService';
 
 const AdminDashboard = () => {
+  const [stats, setStats] = useState({
+    orders: 0,
+    revenue: 0,
+    customers: 0,
+    promotions: 0,
+    deliveries: 0
+  });
+
+  useEffect(() => {
+    const orders = DataService.getOrders();
+    const revenue = orders.reduce((sum,o)=>sum+parseFloat(o.total||0),0);
+    const users = DataService.getUsers();
+    const deliveries = DataService.getDeliveries();
+    // promotions and products are static for now, so leave as placeholders
+    setStats({
+      orders: orders.length,
+      revenue,
+      customers: users.filter(u=>u.role==='user').length,
+      promotions: 0,
+      deliveries: deliveries.length
+    });
+  }, []);
+
   return (
     <div className="admin-page">
         {/* Header */}
@@ -14,23 +38,23 @@ const AdminDashboard = () => {
         <div className="stats-grid">
             <div className="stat-card">
                 <span className="stat-icon">📦</span>
-                <h3>156</h3>
+                <h3>{stats.orders}</h3>
                 <p>Total Orders</p>
             </div>
             <div className="stat-card">
                 <span className="stat-icon">💰</span>
-                <h3>$12,450</h3>
+                <h3>${stats.revenue.toFixed(2)}</h3>
                 <p>Total Revenue</p>
             </div>
             <div className="stat-card">
                 <span className="stat-icon">👥</span>
-                <h3>89</h3>
+                <h3>{stats.customers}</h3>
                 <p>Total Customers</p>
             </div>
             <div className="stat-card">
                 <span className="stat-icon">🏷️</span>
-                <h3>24</h3>
-                <p>Active Promotions</p>
+                <h3>{stats.deliveries}</h3>
+                <p>Deliveries</p>
             </div>
         </div>
 
