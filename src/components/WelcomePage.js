@@ -47,9 +47,7 @@ const WelcomePage = () => {
               <h2 style={styles.aboutTitle}>About E'xse!</h2>
               <div style={styles.aboutDivider}></div>
               <p style={styles.aboutText}>
-                E'xse is your ultimate platform for discovering and ordering delicious food 
-                from the best restaurants in town. We connect food lovers with amazing 
-                culinary experiences, offering everything from quick bites to gourmet meals.
+                E'xse is your ultimate platform managing you store ,products and view your earnings in one sitting.
               </p>
               
               <div style={styles.featureGrid}>

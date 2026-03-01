@@ -74,7 +74,10 @@ const styles = {
     backgroundColor: '#2d2b4e',
     padding: '20px',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    position: 'sticky',
+    top: 0,
+    overflowY: 'auto'
   },
   container: {
     flex: 1,

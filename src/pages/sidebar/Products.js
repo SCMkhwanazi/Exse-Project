@@ -7,7 +7,7 @@ const Products = () =>{
             {/* Header */}
             <div className="admin-header">
                 <h1>Products</h1>
-                <p>Manage your product inventory</p>
+                <p>Manage products</p>
             </div>
 
             {/* Search and Add */}
@@ -29,8 +29,8 @@ const Products = () =>{
                         <p>Weight: 5kg</p>
                         <p>Price: R200.00</p>
                         <p>Stock: Yes</p>
-                        <button classname="admin-button">Edit</button>
-                        <button classname="admin-button">Delete</button>
+                        <button className="admin-btn m-2">Edit</button>
+                        <button className="admin-btn">Delete</button>
                     </div>
                     <div className="admin-card">
                         <h3>Product 2</h3>
@@ -39,8 +39,8 @@ const Products = () =>{
                         <p>Weight: 6 x 500ml</p>
                         <p>Price: R149.99</p>
                         <p>Stock: Yes</p>
-                        <button classname="admin-button">Edit</button>
-                        <button classname="admin-button">Delete</button>
+                        <button className="admin-btn m-2">Edit</button>
+                        <button className="admin-btn">Delete</button>
                     </div>
                     <div className="admin-card">
                         <h3>Product 3</h3>
@@ -49,8 +49,8 @@ const Products = () =>{
                         <p>Weight: 1 x 1L</p>
                         <p>Price: R30.99</p>
                         <p>Stock: No</p>
-                        <button className="admin-button">Edit</button>
-                        <button className="admin-button">Delete</button>
+                        <button className="admin-btn m-2">Edit</button>
+                        <button className="admin-btn">Delete</button>
                     </div>
                 </div>
             </div>

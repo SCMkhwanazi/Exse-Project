@@ -74,7 +74,6 @@ const Products = () => {
         <div className="promotions">
             <div className="promo-header">
                 <h1>Special Offers & Promotions</h1>
-                <p>Don't miss out on amazing deals!</p>
             </div>
 
             <div className="promo-container">
