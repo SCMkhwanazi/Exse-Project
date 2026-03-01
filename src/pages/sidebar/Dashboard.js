@@ -20,10 +20,11 @@ const Dashboard = () => {
         <div className="dashboard">
 
             {/* Header Section */}
-            <div className="dashboard-header">
+            <div className="vpromo-header ">
                 <h1>Store Dashboard</h1>
                 <p>Overview of your store performance</p>
             </div>
+            <br></br>
 
             {/* Stats Cards */}
             <div className="stats-grid">

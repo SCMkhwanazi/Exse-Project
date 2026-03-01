@@ -94,7 +94,7 @@ const ViewPromotions = () => {
     return (
         <div className="view-promotions">
             <div className="vpromo-header">
-                <h1>🎁 Special Offers & Promotions</h1>
+                <h1>Special Offers & Promotions</h1>
                 <p>Don't miss out on amazing deals!</p>
             </div>
 

@@ -18,9 +18,9 @@ const CompanyProfile = () => {
       <div className="profile-container">
 
         {/* Card 1 - Company Profile Info */}
-        <div className="profile-card">
+        <div className="vpromo-header ">
           <h2>Company Profile</h2>
-          <p className="description">
+          <p >
             Update your business data
           </p>
         </div>

@@ -10,6 +10,7 @@ const AdminDynamicLayout = () => {
           {/*Sidebar */}
           <div style={styles.sidebar}>
             <h4 >E'xse</h4>
+            <p>Admin</p>
     
             <ul className="nav flex-column">
 

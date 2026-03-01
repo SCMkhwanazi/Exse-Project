@@ -1,118 +1,223 @@
-import React, { useState } from 'react';
-import './ViewProducts.css';
+import React, { useState } from "react";
+import "./ViewProducts.css";
 
 const ViewProducts = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([
+    { id: 1, name: "Dairy", price: 12.99, stock: 25 },
+    { id: 2, name: "Snacks", price: 14.99, stock: 18 },
+    { id: 3, name: "Stationary", price: 299.99, stock: 40 },
+    { id: 4, name: "Electronics", price: 249.99, stock: 12 },
+    { id: 5, name: "Bread", price: 19.99, stock: 5 },
+    { id: 6, name: "Milk", price: 15.99, stock: 8 },
+    { id: 7, name: "Chips", price: 9.99, stock: 30 },
+  ]);
 
-    const categories = ['All', 'Pizza', 'Burgers', 'Asian', 'Drinks', 'Desserts'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
-    const products = [
-        { id: 1, name: 'Margherita Pizza', price: 12.99, category: 'Pizza', rating: 4.8, icon: '🍕', sold: 256 },
-        { id: 2, name: 'Pepperoni Pizza', price: 14.99, category: 'Pizza', rating: 4.9, icon: '🍕', sold: 342 },
-        { id: 3, name: 'Classic Burger', price: 9.99, category: 'Burgers', rating: 4.7, icon: '🍔', sold: 198 },
-        { id: 4, name: 'Cheese Burger', price: 10.99, category: 'Burgers', rating: 4.8, icon: '🍔', sold: 267 },
-        { id: 5, name: 'Pad Thai', price: 11.99, category: 'Asian', rating: 4.9, icon: '🍜', sold: 289 },
-        { id: 6, name: 'Fried Rice', price: 10.99, category: 'Asian', rating: 4.7, icon: '🍚', sold: 156 },
-        { id: 7, name: 'Coca Cola', price: 2.99, category: 'Drinks', rating: 4.5, icon: '🥤', sold: 512 },
-        { id: 8, name: 'Fresh Orange Juice', price: 3.99, category: 'Drinks', rating: 4.6, icon: '🧃', sold: 287 },
-        { id: 9, name: 'Chocolate Cake', price: 5.99, category: 'Desserts', rating: 4.9, icon: '🍰', sold: 423 },
-        { id: 10, name: 'Ice Cream Sundae', price: 4.99, category: 'Desserts', rating: 4.8, icon: '🍨', sold: 356 },
-        { id: 11, name: 'BBQ Burger', price: 13.99, category: 'Burgers', rating: 4.9, icon: '🍔', sold: 289 },
-        { id: 12, name: 'Spring Rolls', price: 6.99, category: 'Asian', rating: 4.7, icon: '🥟', sold: 234 }
-    ];
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    stock: "",
+  });
 
-    const filteredProducts = selectedCategory === 'All'
-        ? products
-        : products.filter(p => p.category === selectedCategory);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("All");
 
-    const addToCart = (product) => {
-        setCart([...cart, product]);
-    };
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
-    const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-    const cartCount = cart.length;
+  /* ---------------- Modal ---------------- */
 
-    return (
-        <div className="view-products">
-            <div className="vp-header">
-                <h1>🛍️ Our Products</h1>
-                <p>Browse and order your favorite items</p>
-            </div>
+  const openAddModal = () => {
+    setEditingProduct(null);
+    setFormData({ name: "", price: "", stock: "" });
+    setIsModalOpen(true);
+  };
 
-            <div className="vp-container">
-                <div className="vp-main">
-                    <div className="vp-filter">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
-                                onClick={() => setSelectedCategory(category)}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                    </div>
+  const openEditModal = (product) => {
+    setEditingProduct(product);
+    setFormData(product);
+    setIsModalOpen(true);
+  };
 
-                    <div className="vp-grid">
-                        {filteredProducts.map((product) => (
-                            <div key={product.id} className="product-card">
-                                <div className="product-image">{product.icon}</div>
-                                <div className="product-info">
-                                    <h3>{product.name}</h3>
-                                    <div className="product-meta">
-                                        <span className="rating">⭐ {product.rating}</span>
-                                        <span className="sold">Sold: {product.sold}</span>
-                                    </div>
-                                    <div className="product-footer">
-                                        <span className="price">${product.price}</span>
-                                        <button 
-                                            className="add-to-cart-btn"
-                                            onClick={() => addToCart(product)}
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+  const handleSave = () => {
+    if (editingProduct) {
+      setProducts(
+        products.map((p) =>
+          p.id === editingProduct.id ? { ...formData, id: p.id } : p
+        )
+      );
+    } else {
+      setProducts([
+        ...products,
+        { ...formData, id: Date.now() },
+      ]);
+    }
 
-                <div className="vp-cart">
-                    <div className="cart-title">
-                        <h3>Shopping Cart</h3>
-                        <span className="cart-badge">{cartCount}</span>
-                    </div>
+    setIsModalOpen(false);
+  };
 
-                    {cartCount === 0 ? (
-                        <div className="empty-cart-msg">
-                            <p>🛒 No items yet</p>
-                            <small>Add products to your cart</small>
-                        </div>
-                    ) : (
-                        <>
-                            <div className="cart-list">
-                                {cart.map((item, index) => (
-                                    <div key={index} className="cart-list-item">
-                                        <span>{item.name}</span>
-                                        <span className="item-price">${item.price}</span>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="cart-summary">
-                                <div className="summary-row">
-                                    <strong>Subtotal:</strong>
-                                    <strong>${total}</strong>
-                                </div>
-                                <button className="order-btn">Place Order</button>
-                            </div>
-                        </>
-                    )}
-                </div>
-            </div>
-        </div>
+  const handleDelete = (id) => {
+    setProducts(products.filter((product) => product.id !== id));
+  };
+
+  /* ---------------- Search + Filter ---------------- */
+
+  const filteredProducts = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((product) =>
+      filter === "Low Stock" ? product.stock < 10 : true
     );
+
+  /* ---------------- Pagination ---------------- */
+
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  return (
+    <div className="view-products">
+      <div className="vp-header">
+        <h1>Store Products</h1>
+        <p>Manage the products your store offers</p>
+      </div>
+
+      <div className="vp-container">
+        <div className="table-card">
+
+          {/* Top Controls */}
+          <div className="table-header">
+            <div className="controls">
+              <input
+                type="text"
+                placeholder="Search product..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+              >
+                <option value="All">All Products</option>
+                <option value="Low Stock">Low Stock (&lt;10)</option>
+              </select>
+            </div>
+
+            <button className="add-product-btn" onClick={openAddModal}>
+              + Add Product
+            </button>
+          </div>
+
+          {/* Table */}
+          <table className="products-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Price (R)</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {paginatedProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>R{product.price}</td>
+                  <td>{product.stock}</td>
+                  <td className="action-buttons">
+                    <button
+                      className="edit-btn"
+                      onClick={() => openEditModal(product)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Pagination */}
+          <div className="pagination">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                className={
+                  currentPage === index + 1 ? "page-btn active" : "page-btn"
+                }
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>{editingProduct ? "Edit Product" : "Add Product"}</h2>
+
+            <input
+              type="text"
+              placeholder="Product Name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
+
+            <input
+              type="number"
+              placeholder="Price"
+              value={formData.price}
+              onChange={(e) =>
+                setFormData({ ...formData, price: e.target.value })
+              }
+            />
+
+            <input
+              type="number"
+              placeholder="Stock"
+              value={formData.stock}
+              onChange={(e) =>
+                setFormData({ ...formData, stock: e.target.value })
+              }
+            />
+
+            <div className="modal-actions">
+              <button className="save-btn" onClick={handleSave}>
+                Save
+              </button>
+              <button
+                className="cancel-btn"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default ViewProducts;

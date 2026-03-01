@@ -11,6 +11,7 @@ const DynamicLayout = () => {
       <div style={styles.sidebar}>
         {/* Logo/Brand at top */}
         <h4 className="text-white mb-4">E'xse</h4>
+        <p>Client</p>
 
         {/* Navigation Links - will take available space */}
         <ul className="nav flex-column flex-grow-1">
