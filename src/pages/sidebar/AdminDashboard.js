@@ -7,7 +7,7 @@ const AdminDashboard = () => {
         {/* Header */}
         <div className="admin-header">
             <h1>Admin Dashboard</h1>
-            <p>Welcome back! Here's an overview of your store.</p>
+            <p>View orders,stock and operations</p>
         </div>
 
         {/* Stats Cards */}
@@ -19,13 +19,13 @@ const AdminDashboard = () => {
             </div>
             <div className="stat-card">
                 <span className="stat-icon">💰</span>
-                <h3>$12,450</h3>
+                <h3>R12,450</h3>
                 <p>Total Revenue</p>
             </div>
             <div className="stat-card">
                 <span className="stat-icon">👥</span>
-                <h3>89</h3>
-                <p>Total Customers</p>
+                <h3>8</h3>
+                <p>Total Stores</p>
             </div>
             <div className="stat-card">
                 <span className="stat-icon">🏷️</span>
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
                 <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Customer</th>
+                        <th>Store</th>
                         <th>Date</th>
                         <th>Amount</th>
                         <th>Status</th>
@@ -57,23 +57,23 @@ const AdminDashboard = () => {
                 <tbody>
                     <tr>
                         <td>#ORD-001</td>
-                        <td>John Doe</td>
+                        <td>Shoprite</td>
                         <td>2024-01-15</td>
-                        <td>$45.99</td>
+                        <td>R245.99</td>
 <td><span className="status-badge completed">Completed</span></td>
                     </tr>
                     <tr>
                         <td>#ORD-002</td>
-                        <td>Jane Smith</td>
+                        <td>Luka Market</td>
                         <td>2024-01-14</td>
-                        <td>$78.50</td>
+                        <td>R578.50</td>
                         <td><span className="status-badge pending">Pending</span></td>
                     </tr>
                     <tr>
                         <td>#ORD-003</td>
-                        <td>Bob Wilson</td>
+                        <td>PicknPay</td>
                         <td>2024-01-13</td>
-                        <td>$32.00</td>
+                        <td>R732.00</td>
                         <td><span className="status-badge active">Processing</span></td>
                     </tr>
                 </tbody>

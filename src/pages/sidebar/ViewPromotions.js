@@ -124,6 +124,7 @@ const ViewPromotions = () => {
                             </div>
 
                             <p className="vpromo-description">{promo.description}</p>
+                            
 
                             <div className="vpromo-footer">
                                 <small>Valid till {promo.validTill}</small>

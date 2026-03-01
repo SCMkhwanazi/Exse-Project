@@ -12,7 +12,7 @@ const WelcomePage = () => {
         <div style={styles.heroOverlay}>
           <div className="container text-center text-white">
             <h1 style={styles.heroTitle}>E'xse!</h1>
-            <p style={styles.heroSubtitle}>Your Ultimate Food Delivery Experience</p>
+            <p style={styles.heroSubtitle}>Your ultamate plateform for your company</p>
             
             <div style={styles.buttonGroup}>
               <Link to="/pages/signin">

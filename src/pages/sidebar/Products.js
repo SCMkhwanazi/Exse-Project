@@ -24,21 +24,33 @@ const Products = () =>{
                 <div className="admin-grid">
                     <div className="admin-card">
                         <h3>Product 1</h3>
-                        <p>Category: Electronics</p>
-                        <p>Price: $99.99</p>
-                        <p>Stock: 50</p>
+                        <p>Company: Shoprite</p>
+                        <p>Category: Meat</p>
+                        <p>Weight: 5kg</p>
+                        <p>Price: R200.00</p>
+                        <p>Stock: Yes</p>
+                        <button classname="admin-button">Edit</button>
+                        <button classname="admin-button">Delete</button>
                     </div>
                     <div className="admin-card">
                         <h3>Product 2</h3>
-                        <p>Category: Clothing</p>
-                        <p>Price: $49.99</p>
-                        <p>Stock: 100</p>
+                        <p>Company: Luka Market</p>
+                        <p>Category: Drinks</p>
+                        <p>Weight: 6 x 500ml</p>
+                        <p>Price: R149.99</p>
+                        <p>Stock: Yes</p>
+                        <button classname="admin-button">Edit</button>
+                        <button classname="admin-button">Delete</button>
                     </div>
                     <div className="admin-card">
                         <h3>Product 3</h3>
-                        <p>Category: Food</p>
-                        <p>Price: $19.99</p>
-                        <p>Stock: 200</p>
+                        <p>Company: PicknPay</p>
+                        <p>Category: Dairy</p>
+                        <p>Weight: 1 x 1L</p>
+                        <p>Price: R30.99</p>
+                        <p>Stock: No</p>
+                        <button className="admin-button">Edit</button>
+                        <button className="admin-button">Delete</button>
                     </div>
                 </div>
             </div>

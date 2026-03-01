@@ -37,28 +37,28 @@ const Orders = () => {
                     <tbody>
                         <tr>
                             <td>#ORD-001</td>
-                            <td>John Doe</td>
+                            <td>Shoprite</td>
                             <td>2024-01-15</td>
                             <td>3 items</td>
-                            <td>$45.99</td>
+                            <td>R245.99</td>
                             <td><span className="status-badge completed">Completed</span></td>
                             <td><button className="admin-btn">View</button></td>
                         </tr>
                         <tr>
                             <td>#ORD-002</td>
-                            <td>Jane Smith</td>
+                            <td>Luka Market</td>
                             <td>2024-01-14</td>
                             <td>5 items</td>
-                            <td>$78.50</td>
+                            <td>R578.50</td>
                             <td><span className="status-badge pending">Pending</span></td>
                             <td><button className="admin-btn">View</button></td>
                         </tr>
                         <tr>
                             <td>#ORD-003</td>
-                            <td>Bob Wilson</td>
+                            <td>PicknPay</td>
                             <td>2024-01-13</td>
                             <td>2 items</td>
-                            <td>$32.00</td>
+                            <td>R732.00</td>
                             <td><span className="status-badge active">Processing</span></td>
                             <td><button className="admin-btn">View</button></td>
                         </tr>

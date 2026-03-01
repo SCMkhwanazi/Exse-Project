@@ -7,71 +7,50 @@ const Products = () => {
     const promotions = [
         {
             id: 1,
-            title: '🎉 50% Off First Order!',
-            description: 'Get 50% discount on your first order. Minimum order $15',
+            company: 'Shoprite',
+            title: '50% Off First Order!',
+            description: 'Get 50% discount on your first online order. Minimum order R500',
             code: 'FIRST50',
             discount: '50%',
             validTill: 'March 31, 2026',
-            category: 'New Users'
+            category: 'Grocery Special'
         },
         {
             id: 2,
-            title: '🍕 Pizza Party - 30% Off',
-            description: 'Order any pizza and get 30% discount. Valid on all sizes',
-            code: 'PIZZA30',
-            discount: '30%',
+            company: 'Shoprite',
+            title: 'Bulk orders 5% Off',
+            description: 'Orders over R1000. Valid on all sizes',
+            code: 'Shop5',
+            discount: '5%',
             validTill: 'March 30, 2026',
-            category: 'Pizza Special'
+            category: 'Grocery Special'
         },
         {
             id: 3,
-            title: '🍔 Free Delivery on Burgers',
-            description: 'Free delivery on orders over $20 from burger restaurants',
-            code: 'BURGER_FREE',
+            company: 'Takelot',
+            title: 'Welcome Prome',
+            description: 'Free delivery on orders over R520 for new customers',
+            code: 'Take_FREE',
             discount: 'Free Delivery',
             validTill: 'March 28, 2026',
             category: 'Delivery'
         },
         {
             id: 4,
-            title: '🥗 Healthy Choices - 25% Off',
-            description: 'Get 25% off on all healthy salads and bowls',
-            code: 'HEALTHY25',
-            discount: '25%',
+            
+            company: 'PicknPay',
+            title: 'Baby Choices - 10% Off',
+            description: 'Get 10% off on all health and wellness products for babies',
+            code: 'HEALTHY10',
+            discount: '10%',
             validTill: 'April 5, 2026',
             category: 'Health'
         },
         {
             id: 5,
-            title: '☕ Combo Deal - $9.99',
-            description: 'Get any burger with fries and drink for just $9.99',
-            code: 'COMBO99',
-            discount: '$9.99',
-            validTill: 'March 25, 2026',
-            category: 'Combo'
-        },
-        {
-            id: 6,
-            title: '🎯 Loyalty Rewards - Extra 10%',
-            description: 'Earn 10% extra on your loyalty points this week',
-            code: 'LOYALTY10',
-            discount: '10%',
-            validTill: 'March 27, 2026',
-            category: 'Loyalty'
-        },
-        {
-            id: 7,
-            title: '🍜 Asian Cuisine - 20% Off',
-            description: 'Enjoy 20% discount on all Asian restaurants',
-            code: 'ASIAN20',
-            discount: '20%',
-            validTill: 'April 2, 2026',
-            category: 'Regional'
-        },
-        {
-            id: 8,
-            title: '🎓 Student Discount - 15% Off',
-            description: 'Show your school ID and get 15% discount on all orders',
+            company:"Waltons Stationery",
+            title: 'Student Discount - 15% Off',
+            description: 'Show your school ID and get 15% discount on books and stationery',
             code: 'STUDENT15',
             discount: '15%',
             validTill: 'April 15, 2026',
@@ -94,7 +73,7 @@ const Products = () => {
     return (
         <div className="promotions">
             <div className="promo-header">
-                <h1>🎁 Special Offers & Promotions</h1>
+                <h1>Special Offers & Promotions</h1>
                 <p>Don't miss out on amazing deals!</p>
             </div>
 
@@ -125,6 +104,8 @@ const Products = () => {
 
                             <p className="promo-description">{promo.description}</p>
 
+                            <p className="vpromo-description">{promo.company}</p>
+
                             <div className="promo-footer">
                                 <small>Valid till {promo.validTill}</small>
                                 <span className="category-tag">{promo.category}</span>
@@ -147,16 +128,6 @@ const Products = () => {
                         </div>
                     ))}
                 </div>
-            </div>
-
-            <div className="promo-info">
-                <h3>How to Use Promotions</h3>
-                <ol>
-                    <li>Select a promotion that interests you</li>
-                    <li>Click to view the promo code</li>
-                    <li>Copy the code to your clipboard</li>
-                    <li>Enter the code at checkout to get your discount</li>
-                </ol>
             </div>
         </div>
     );
