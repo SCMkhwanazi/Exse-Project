@@ -11,6 +11,7 @@ import Dashboard from './pages/sidebar/Dashboard';
 import Orders from './pages/sidebar/Orders';
 import Products from './pages/sidebar/Products';
 import Promotions from './pages/sidebar/Promotions';
+import Driver from './pages/sidebar/Driver';
 import CompanyProfile from './pages/sidebar/CompanyProfile';
 import ViewProducts from './pages/sidebar/ViewProducts';
 import ViewPromotions from './pages/sidebar/ViewPromotions';
@@ -41,6 +42,7 @@ function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="products" element={<Products />} />
           <Route path="promotions" element={<Promotions />} />
+          <Route path="driver" element={<Driver />} />
         </Route>
       </Routes>
     </Router>
