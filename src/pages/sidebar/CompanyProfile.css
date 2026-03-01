@@ -1,0 +1,119 @@
+.company-profile {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  padding: 40px 20px;
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cards */
+.profile-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card h2 {
+  margin: 0 0 10px;
+}
+
+.description {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Company Name Section */
+.company-name-section {
+  margin-bottom: 30px;
+}
+
+.company-name-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.company-name-display h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.edit-btn,
+.save-small-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn:hover,
+.save-small-btn:hover {
+  background: #5568d3;
+}
+
+.edit-name {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-name input {
+  flex: 1;
+}
+
+/* Payout Section */
+.payout-section h3 {
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Save Button */
+.save-btn {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #5568d3;
+}

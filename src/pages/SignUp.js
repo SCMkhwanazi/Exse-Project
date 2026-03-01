@@ -21,6 +21,32 @@ const SignUp = () => {
   const formRef = useRef(null);
   const navigate = useNavigate();
 
+  const [showDriverForm, setShowDriverForm] = useState(false);
+
+  const [driverData, setDriverData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    saId: '',
+    address: '',
+    licenseCode: '',
+    licenseExpiry: '',
+    pdp: '',
+    pdpExpiry: '',
+    criminalRecord: 'no',
+    criminalExplanation: '',
+    primaryCity: '',
+    deliveryRadius: '',
+    bank: '',
+    accountType: '',
+    accountHolder: '',
+    accountNumber: '',
+    emergencyContact: '',
+    saIdCopy: null,
+    licenseCopy: null,
+    proofOfAddress: null,
+    pdpCopy: null
+  });
   const handleToggle = (type) => {
     if (type === 'password') {
       setShowPassword(!showPassword);
@@ -103,144 +129,209 @@ const SignUp = () => {
       setIsLoading(false);
     }
   };
+  const handleDriverChange = (e) => {
+  const { id, value, type, files } = e.target;
 
-  return (
-    <div style={styles.pageContainer}>
-      <div style={styles.formWrapper}>
-        <form style={styles.content} onSubmit={handleSubmit} ref={formRef}>
-          <h1 style={styles.title}>Create Account</h1>
-          <p style={styles.subtitle}>Join E'xse today!</p>
-
-          {/* Full Name */}
-          <div style={styles.inputGroup}>
-            <label htmlFor="username" style={styles.label}>Full Name</label>
-            <input 
-              type="text" 
-              style={styles.input}
-              id="username" 
-              placeholder="Enter your full name"
-              value={formData.username} 
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-
-          {/* Email */}
-          <div style={styles.inputGroup}>
-            <label htmlFor="email" style={styles.label}>Email address</label>
-            <input 
-              type="email" 
-              style={styles.input}
-              id="email" 
-              placeholder="name@example.com" 
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-
-          {/* Password */}
-          <div style={styles.inputGroup}>
-            <label htmlFor="password" style={styles.label}>Password</label>
-            <div style={styles.passwordContainer}>
-              <input 
-                type={showPassword ? 'text' : 'password'} 
-                style={styles.passwordInput}
-                id="password" 
-                placeholder="Create a password"
-                value={formData.password} 
-                onChange={handleChange} 
-                required 
-              />
-              <i 
-                className={`bi ${showPassword ? 'bi-eye' : 'bi-eye-slash'}`} 
-                onClick={() => handleToggle('password')} 
-                style={styles.toggleIcon} 
-              />
-            </div>
-          </div>
-
-          {/* Confirm Password */}
-          <div style={styles.inputGroup}>
-            <label htmlFor="confirmPassword" style={styles.label}>Confirm Password</label>
-            <div style={styles.passwordContainer}>
-              <input 
-                type={showConfirmPassword ? 'text' : 'password'} 
-                style={styles.passwordInput}
-                id="confirmPassword" 
-                placeholder="Confirm your password"
-                value={formData.confirmPassword} 
-                onChange={handleChange} 
-                required 
-              />
-              <i 
-                className={`bi ${showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'}`} 
-                onClick={() => handleToggle('confirm')} 
-                style={styles.toggleIcon} 
-              />
-            </div>
-            {matchMessage && (
-              <div style={{
-                ...styles.message,
-                color: matchMessage.includes('✅') ? '#28a745' : '#dc3545'
-              }}>
-                {matchMessage}
-              </div>
-            )}
-          </div>
-
-          {/* Password Requirements */}
-          <div style={styles.requirements}>
-            <p style={styles.requirementsText}>
-              <i className="bi bi-shield-check" style={styles.requirementIcon}></i>
-              Password must be at least 6 characters
-            </p>
-          </div>
-
-          <button 
-            type="submit" 
-            style={styles.signUpButton}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <>
-                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                Creating Account...
-              </>
-            ) : (
-              'Sign Up'
-            )}
-          </button>
-          
-          <div style={styles.signinLink}>
-            Already have an account? <Link to="/pages/signin" style={styles.signinText}>Sign In</Link>
-          </div>
-        </form>
-      </div>
-
-      {/* Toast Notification */}
-      {showToast && (
-        <div style={styles.toastContainer}>
-          <div style={{
-            ...styles.toast,
-            backgroundColor: toastMessage.includes('Error') ? '#dc3545' : '#8a7be0'
-          }}>
-            <div style={styles.toastContent}>
-              <span>{toastMessage}</span>
-              <button
-                style={styles.toastClose}
-                onClick={() => setShowToast(false)}
-              >
-                <i className="bi bi-x"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  if (type === 'file') {
+    setDriverData({ ...driverData, [id]: files[0] });
+  } else {
+    setDriverData({ ...driverData, [id]: value });
+  }
 };
 
+const handleDriverSubmit = async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData();
+  Object.keys(driverData).forEach(key => {
+    formData.append(key, driverData[key]);
+  });
+
+  try {
+    await axios.post('http://localhost:3001/driver-application', formData);
+    setToastMessage('Driver application submitted successfully!');
+    setShowToast(true);
+    setShowDriverForm(false);
+  } catch (err) {
+    setToastMessage('Error submitting application.');
+    setShowToast(true);
+  }
+};
+
+ return (
+  <div style={styles.pageContainer}>
+    <div style={styles.formWrapper}>
+
+      {/* ================= DRIVER APPLICATION VIEW ================= */}
+      {showDriverForm ? (
+        <form style={styles.content} onSubmit={handleDriverSubmit}>
+          
+          {/* Back Button */}
+          <button
+            type="button"
+            style={styles.backButton}
+            onClick={() => setShowDriverForm(false)}
+          >
+            ← Back to Sign Up
+          </button>
+
+          <h2 style={styles.title}>Driver Application</h2>
+
+          {/* PERSONAL DETAILS */}
+          <h5 style={styles.sectionTitle}>Personal Details</h5>
+          <input style={styles.input} id="fullName" placeholder="Full Name" onChange={handleDriverChange} required />
+          <input style={styles.input} id="phone" placeholder="Phone Number" onChange={handleDriverChange} required />
+          <input style={styles.input} id="email" placeholder="Email" onChange={handleDriverChange} required />
+          <input style={styles.input} id="saId" placeholder="SA ID Number" onChange={handleDriverChange} required />
+          <input style={styles.input} id="address" placeholder="Residential Address" onChange={handleDriverChange} required />
+
+          {/* LICENSE */}
+          <h5 style={styles.sectionTitle}>License & Compliance</h5>
+          <input style={styles.input} id="licenseCode" placeholder="Driver License Code" onChange={handleDriverChange} required />
+          <input type="date" style={styles.input} id="licenseExpiry" onChange={handleDriverChange} required />
+          <input style={styles.input} id="pdp" placeholder="Professional Driving Permit" onChange={handleDriverChange} required />
+          <input type="date" style={styles.input} id="pdpExpiry" onChange={handleDriverChange} required />
+
+          {/* CRIMINAL RECORD */}
+          <h5 style={styles.sectionTitle}>Criminal Record</h5>
+          <select style={styles.input} id="criminalRecord" onChange={handleDriverChange}>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+
+          {driverData.criminalRecord === 'yes' && (
+            <textarea
+              style={styles.input}
+              id="criminalExplanation"
+              placeholder="Explain your criminal record"
+              onChange={handleDriverChange}
+            />
+          )}
+
+          {/* AVAILABILITY */}
+          <h5 style={styles.sectionTitle}>Availability & Service Area</h5>
+          <input style={styles.input} id="primaryCity" placeholder="Primary City" onChange={handleDriverChange} required />
+          <input style={styles.input} id="deliveryRadius" placeholder="Delivery Radius (KM)" onChange={handleDriverChange} required />
+
+          {/* DOCUMENTS */}
+          <h5 style={styles.sectionTitle}>Documents Upload</h5>
+          <input type="file" style={styles.input} id="saIdCopy" onChange={handleDriverChange} required />
+          <input type="file" style={styles.input} id="licenseCopy" onChange={handleDriverChange} required />
+          <input type="file" style={styles.input} id="proofOfAddress" onChange={handleDriverChange} required />
+          <input type="file" style={styles.input} id="pdpCopy" onChange={handleDriverChange} required />
+
+          {/* PAYMENT */}
+          <h5 style={styles.sectionTitle}>Payment & Emergency Contact</h5>
+          <input style={styles.input} id="bank" placeholder="Bank Name" onChange={handleDriverChange} required />
+          <input style={styles.input} id="accountType" placeholder="Account Type" onChange={handleDriverChange} required />
+          <input style={styles.input} id="accountHolder" placeholder="Account Holder" onChange={handleDriverChange} required />
+          <input style={styles.input} id="accountNumber" placeholder="Account Number" onChange={handleDriverChange} required />
+          <input style={styles.input} id="emergencyContact" placeholder="Emergency Contact Number" onChange={handleDriverChange} required />
+
+          <button type="submit" style={styles.signUpButton}>
+            Submit Application
+          </button>
+
+        </form>
+      ) : (
+
+      /* ================= SIGN UP VIEW ================= */
+      <form style={styles.content} onSubmit={handleSubmit} ref={formRef}>
+        <h1 style={styles.title}>Create Account</h1>
+        <p style={styles.subtitle}>Join E'xse today!</p>
+
+        <div style={styles.inputGroup}>
+          <label htmlFor="username" style={styles.label}>Full Name</label>
+          <input 
+            type="text"
+            style={styles.input}
+            id="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div style={styles.inputGroup}>
+          <label htmlFor="email" style={styles.label}>Email</label>
+          <input
+            type="email"
+            style={styles.input}
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div style={styles.inputGroup}>
+          <label htmlFor="password" style={styles.label}>Password</label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            style={styles.input}
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div style={styles.inputGroup}>
+          <label htmlFor="confirmPassword" style={styles.label}>Confirm Password</label>
+          <input
+            type={showConfirmPassword ? 'text' : 'password'}
+            style={styles.input}
+            id="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {matchMessage && (
+          <div style={{
+            ...styles.message,
+            color: matchMessage.includes('✅') ? '#28a745' : '#dc3545'
+          }}>
+            {matchMessage}
+          </div>
+        )}
+
+        <button type="submit" style={styles.signUpButton}>
+          Sign Up
+        </button>
+
+        <button
+          type="button"
+          style={{ ...styles.signUpButton, backgroundColor: '#5f5a8a' }}
+          onClick={() => setShowDriverForm(true)}
+        >
+          Apply as Driver
+        </button>
+
+        <div style={styles.signinLink}>
+          Already have an account? <Link to="/pages/signin" style={styles.signinText}>Sign In</Link>
+        </div>
+      </form>
+
+      )}
+
+    </div>
+
+    {/* Toast */}
+    {showToast && (
+      <div style={styles.toastContainer}>
+        <div style={styles.toast}>
+          <div style={styles.toastContent}>
+            <span>{toastMessage}</span>
+            <button style={styles.toastClose} onClick={() => setShowToast(false)}>×</button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+);
+};
 export default SignUp;
 
 const styles = {
@@ -415,7 +506,22 @@ const styles = {
     padding: '0',
     display: 'flex',
     alignItems: 'center'
-  }
+  },
+  sectionTitle: {
+  marginTop: '25px',
+  marginBottom: '10px',
+  color: '#2d2b4e',
+  fontWeight: '600'
+},
+backButton: {
+  background: 'none',
+  border: 'none',
+  color: '#8a7be0',
+  fontWeight: '600',
+  marginBottom: '20px',
+  cursor: 'pointer',
+  textAlign: 'left'
+},
 };
 
 // Add this to your global CSS

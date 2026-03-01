@@ -342,3 +342,127 @@
         font-size: 80px;
     }
 }
+/* ===== CLIENT DASHBOARD ===== */
+
+.dashboard-header {
+    padding: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2d2b4e;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    color: #5f5a8a;
+}
+
+/* Stats Cards */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 40px 40px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(138, 123, 224, 0.15);
+    border: 1px solid #e6deff;
+}
+
+.stat-card h3 {
+    font-size: 16px;
+    color: #5f5a8a;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d2b4e;
+}
+
+.earnings-card {
+    background: linear-gradient(135deg, #8a7be0, #6b5fc7);
+    color: white;
+}
+
+.earnings-card h3,
+.earnings-card p {
+    color: white;
+}
+
+/* Orders Section */
+.orders-section {
+    padding: 0 40px 60px;
+}
+
+.orders-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2d2b4e;
+}
+
+.orders-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(138, 123, 224, 0.1);
+    border: 1px solid #e6deff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f8f5ff;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    color: #5f5a8a;
+    font-weight: 600;
+}
+
+tbody tr {
+    border-top: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background: #faf8ff;
+}
+
+/* Status Styles */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status.delivered {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.ontheway {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.preparing {
+    background: #cce5ff;
+    color: #004085;
+}

@@ -11,7 +11,7 @@ import Dashboard from './pages/sidebar/Dashboard';
 import Orders from './pages/sidebar/Orders';
 import Products from './pages/sidebar/Products';
 import Promotions from './pages/sidebar/Promotions';
-import PlaceOrders from './pages/sidebar/PlaceOrders';
+import CompanyProfile from './pages/sidebar/CompanyProfile';
 import ViewProducts from './pages/sidebar/ViewProducts';
 import ViewPromotions from './pages/sidebar/ViewPromotions';
 import AdminDashboard from './pages/sidebar/AdminDashboard';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/sidebar" element={<DynamicLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="placeorders" element={<PlaceOrders />} />
+          <Route path="companyprofile" element={<CompanyProfile />} />
           <Route path="viewproducts" element={<ViewProducts />} />
           <Route path="viewpromotions" element={<ViewPromotions />} />
         </Route>

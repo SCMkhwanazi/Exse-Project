@@ -21,8 +21,8 @@ const DynamicLayout = () => {
           </li>
 
           <li className="nav-item mb-2">
-            <Link className="nav-link text-white" to="/sidebar/placeorders">
-              <i className="bi bi-bag me-2"></i> Place Orders
+            <Link className="nav-link text-white" to="/sidebar/companyprofile">
+              <i className="bi bi-bag me-2"></i> Company Profile
             </Link>
           </li>
 
