@@ -215,9 +215,13 @@ const handleDriverSubmit = async (e) => {
 
           {/* DOCUMENTS */}
           <h5 style={styles.sectionTitle}>Documents Upload</h5>
+          <p style={styles.sectionTitle}>SA ID Certified Copy</p>
           <input type="file" style={styles.input} id="saIdCopy" onChange={handleDriverChange} required />
+          <p style={styles.sectionTitle}>License Certified Copy</p>
           <input type="file" style={styles.input} id="licenseCopy" onChange={handleDriverChange} required />
+          <p style={styles.sectionTitle}>Proof of Address</p>
           <input type="file" style={styles.input} id="proofOfAddress" onChange={handleDriverChange} required />
+          <p style={styles.sectionTitle}>PDP Certified Copy</p>
           <input type="file" style={styles.input} id="pdpCopy" onChange={handleDriverChange} required />
 
           {/* PAYMENT */}
