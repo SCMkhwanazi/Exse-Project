@@ -16,6 +16,12 @@ import CompanyProfile from './pages/sidebar/CompanyProfile';
 import ViewProducts from './pages/sidebar/ViewProducts';
 import ViewPromotions from './pages/sidebar/ViewPromotions';
 import AdminDashboard from './pages/sidebar/AdminDashboard';
+import Inventory from './pages/sidebar/Inventory';
+import Clients from './pages/sidebar/Clients';
+import Settings from './pages/sidebar/Settings';
+import ActivityLog from './pages/sidebar/ActivityLog';
+import Onboarding from './pages/sidebar/Onboarding';
+import Companies from './pages/sidebar/Companies';
 
 function App() {
   return (
@@ -43,6 +49,12 @@ function App() {
           <Route path="products" element={<Products />} />
           <Route path="promotions" element={<Promotions />} />
           <Route path="driver" element={<Driver />} />
+          <Route path="inventory" element={<Inventory />} />
+          <Route path="clients" element={<Clients />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="activity-log" element={<ActivityLog />} />
+          <Route path="onboarding" element={<Onboarding />} />
+          <Route path="companies" element={<Companies />} />
         </Route>
       </Routes>
     </Router>

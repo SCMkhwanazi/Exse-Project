@@ -16,7 +16,7 @@ const SignUp = () => {
   const [matchMessage, setMatchMessage] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [ setIsLoading] = useState(false);
 
   const formRef = useRef(null);
   const navigate = useNavigate();
@@ -340,7 +340,7 @@ export default SignUp;
 
 const styles = {
   pageContainer: {
-    backgroundColor: '#8a7be0', // Purple background matching sign-in page
+    backgroundColor: '#000000', // black background
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
@@ -364,14 +364,14 @@ const styles = {
   title: {
     fontSize: '36px',
     fontWeight: '700',
-    color: '#2d2b4e',
+    color: '#000000',
     textAlign: 'center',
     marginBottom: '10px'
   },
   
   subtitle: {
     fontSize: '16px',
-    color: '#5f5a8a',
+    color: '#333333',
     textAlign: 'center',
     marginBottom: '30px'
   },
@@ -384,7 +384,7 @@ const styles = {
     display: 'block',
     fontSize: '14px',
     fontWeight: '600',
-    color: '#2d2b4e',
+    color: '#000000',
     marginBottom: '8px'
   },
   
@@ -392,11 +392,11 @@ const styles = {
     width: '100%',
     padding: '12px 16px',
     fontSize: '15px',
-    border: '2px solid #e0e0e0',
+    border: '2px solid #00cc00',
     borderRadius: '10px',
     outline: 'none',
     transition: 'border-color 0.3s ease',
-    backgroundColor: '#f8f9fa'
+    backgroundColor: '#f5f5f5'
   },
   
   passwordContainer: {
@@ -408,11 +408,11 @@ const styles = {
     width: '100%',
     padding: '12px 45px 12px 16px',
     fontSize: '15px',
-    border: '2px solid #e0e0e0',
+    border: '2px solid #00cc00',
     borderRadius: '10px',
     outline: 'none',
     transition: 'border-color 0.3s ease',
-    backgroundColor: '#f8f9fa'
+    backgroundColor: '#f5f5f5'
   },
   
   toggleIcon: {
@@ -421,7 +421,7 @@ const styles = {
     top: '50%',
     transform: 'translateY(-50%)',
     cursor: 'pointer',
-    color: '#8a7be0',
+    color: '#00cc00',
     fontSize: '18px',
     zIndex: 10
   },
@@ -435,13 +435,13 @@ const styles = {
   requirements: {
     marginBottom: '25px',
     padding: '10px',
-    backgroundColor: '#f8f5ff',
+    backgroundColor: '#f5f5f5',
     borderRadius: '8px'
   },
   
   requirementsText: {
     fontSize: '13px',
-    color: '#5f5a8a',
+    color: '#333333',
     margin: 0,
     display: 'flex',
     alignItems: 'center',
@@ -449,32 +449,32 @@ const styles = {
   },
   
   requirementIcon: {
-    color: '#8a7be0',
+    color: '#00cc00',
     fontSize: '16px'
   },
   
   signUpButton: {
     width: '100%',
     padding: '14px',
-    backgroundColor: '#8a7be0',
-    color: 'white',
+    backgroundColor: '#00cc00',
+    color: '#000000',
     border: 'none',
     borderRadius: '10px',
     fontSize: '16px',
     fontWeight: '600',
     cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
+    transition: 'background-color 0.2s ease',
     marginBottom: '20px'
   },
   
   signinLink: {
     textAlign: 'center',
     fontSize: '15px',
-    color: '#5f5a8a'
+    color: '#000000'
   },
   
   signinText: {
-    color: '#8a7be0',
+    color: '#00cc00',
     textDecoration: 'none',
     fontWeight: '600',
     marginLeft: '5px'
@@ -489,9 +489,10 @@ const styles = {
   
   toast: {
     color: 'white',
+    backgroundColor: '#00cc00',
     padding: '15px 25px',
     borderRadius: '10px',
-    boxShadow: '0 5px 15px rgba(138, 123, 224, 0.3)',
+    boxShadow: '0 5px 15px rgba(0, 204, 0, 0.3)',
     animation: 'slideIn 0.3s ease'
   },
   
@@ -514,13 +515,13 @@ const styles = {
   sectionTitle: {
   marginTop: '25px',
   marginBottom: '10px',
-  color: '#2d2b4e',
+  color: '#000000',
   fontWeight: '600'
 },
 backButton: {
   background: 'none',
   border: 'none',
-  color: '#8a7be0',
+  color: '#00cc00',
   fontWeight: '600',
   marginBottom: '20px',
   cursor: 'pointer',

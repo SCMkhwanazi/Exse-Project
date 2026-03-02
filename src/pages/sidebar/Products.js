@@ -2,6 +2,17 @@ import React from 'react';
 import './AdminDashboard.css';
 
 const Products = () =>{
+    const productList = [
+        { id: 1, name: 'Rice 10kg', company: 'Shoprite', category: 'Groceries', weight: '10kg', price: 'R200.00', stock: true },
+        { id: 2, name: 'Cooking Oil 5L', company: 'Luka Market', category: 'Groceries', weight: '5L', price: 'R120.50', stock: true },
+        { id: 3, name: 'Soap Pack', company: 'PicknPay', category: 'Household', weight: '3x1kg', price: 'R45.00', stock: false },
+        { id: 4, name: 'Soda 2L', company: 'Shoprite', category: 'Drinks', weight: '2L', price: 'R25.00', stock: true },
+        { id: 5, name: 'Milk 1L', company: 'PicknPay', category: 'Dairy', weight: '1L', price: 'R30.99', stock: true }
+    ];
+
+    const handleEdit = (product) => alert(`Edit ${product.name}`);
+    const handleDelete = (product) => alert(`Delete ${product.name}`);
+
     return(
         <div className="admin-page">
             {/* Header */}
@@ -22,36 +33,18 @@ const Products = () =>{
 
                 {/* Products Grid */}
                 <div className="admin-grid">
-                    <div className="admin-card">
-                        <h3>Product 1</h3>
-                        <p>Company: Shoprite</p>
-                        <p>Category: Meat</p>
-                        <p>Weight: 5kg</p>
-                        <p>Price: R200.00</p>
-                        <p>Stock: Yes</p>
-                        <button className="admin-btn m-2">Edit</button>
-                        <button className="admin-btn">Delete</button>
-                    </div>
-                    <div className="admin-card">
-                        <h3>Product 2</h3>
-                        <p>Company: Luka Market</p>
-                        <p>Category: Drinks</p>
-                        <p>Weight: 6 x 500ml</p>
-                        <p>Price: R149.99</p>
-                        <p>Stock: Yes</p>
-                        <button className="admin-btn m-2">Edit</button>
-                        <button className="admin-btn">Delete</button>
-                    </div>
-                    <div className="admin-card">
-                        <h3>Product 3</h3>
-                        <p>Company: PicknPay</p>
-                        <p>Category: Dairy</p>
-                        <p>Weight: 1 x 1L</p>
-                        <p>Price: R30.99</p>
-                        <p>Stock: No</p>
-                        <button className="admin-btn m-2">Edit</button>
-                        <button className="admin-btn">Delete</button>
-                    </div>
+                    {productList.map(prod => (
+                        <div className="admin-card" key={prod.id}>
+                            <h3>{prod.name}</h3>
+                            <p>Company: {prod.company}</p>
+                            <p>Category: {prod.category}</p>
+                            <p>Weight: {prod.weight}</p>
+                            <p>Price: {prod.price}</p>
+                            <p>Stock: {prod.stock ? 'Yes' : 'No'}</p>
+                            <button className="admin-btn m-2" onClick={() => handleEdit(prod)}>Edit</button>
+                            <button className="admin-btn" onClick={() => handleDelete(prod)}>Delete</button>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

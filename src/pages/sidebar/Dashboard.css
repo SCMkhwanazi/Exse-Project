@@ -2,7 +2,7 @@
 .dashboard {
     width: 100%;
     min-height: 100vh;
-    background-color: #f8f5ff; /* Soft lavender-tinted white */
+    background-color: #ffffff; /* White background */
 }
 
 /* Hero Section */
@@ -10,10 +10,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(135deg, #e0d3ff 0%, #d4c5ff 100%); /* Lavender purple gradient */
-    padding: 60px 40px;
+    background: #000000;
+    padding: 40px 20px;
     gap: 40px;
     flex-wrap: wrap;
+    border-bottom: 1px solid #00cc00;
 }
 
 .hero-content {
@@ -22,10 +23,10 @@
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
-    color: #2d2b4e; /* Deep purple-brown */
-    margin: 0 0 30px 0;
+    color: #ffffff;
+    margin: 0 0 20px 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -39,21 +40,21 @@
 
 .search-box,
 .delivery-dropdown {
-    background: white;
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: 10px 14px;
     flex: 1;
     min-width: 250px;
-    box-shadow: 0 2px 8px rgba(149, 128, 255, 0.1); /* Purple-tinted shadow */
+    border: 1px solid #ccc;
 }
 
 .search-icon,
 .dropdown-icon {
     font-size: 18px;
     margin-right: 12px;
-    color: #8a7be0; /* Lavender purple for icons */
+    color: #00cc00; /* Green for icons */
 }
 
 .search-box input {
@@ -62,10 +63,12 @@
     font-size: 14px;
     width: 100%;
     font-family: inherit;
+    background: #000000;
+    color: #ffffff;
 }
 
 .search-box input::placeholder {
-    color: #a59ec6; /* Soft lavender placeholder */
+    color: #888888; /* Gray placeholder */
 }
 
 .delivery-dropdown select {
@@ -76,25 +79,25 @@
     width: 100%;
     cursor: pointer;
     font-family: inherit;
-    color: #4a458b;
+    color: #ffffff;
 }
 
 .search-btn {
-    background: #8a7be0; /* Lavender purple button */
-    color: white;
+    background: #00cc00;
+    color: #ffffff;
     border: none;
-    padding: 12px 32px;
-    border-radius: 8px;
+    padding: 10px 24px;
+    border-radius: 6px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.2s ease;
     white-space: nowrap;
     font-family: inherit;
 }
 
 .search-btn:hover {
-    background: #6b5fc7; /* Darker purple on hover */
+    background: #0056b3;
 }
 
 /* Hero Image */
@@ -109,14 +112,15 @@
 .image-placeholder {
     width: 350px;
     height: 250px;
-    background: linear-gradient(135deg, #c5b4ff, #aa99ff); /* Light to medium lavender */
+    background: #f0f0f0;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 120px;
-    box-shadow: 0 8px 20px rgba(138, 123, 224, 0.2); /* Purple shadow */
-    color: #3f3a6b; /* Deep purple for emoji contrast */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: #888888;
+    border: 1px solid #ddd;
 }
 
 /* Services Section */
@@ -129,7 +133,7 @@
 .services-section h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #2d2b4e;
+    color: #000000;
     text-align: center;
     margin-bottom: 40px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -144,36 +148,37 @@
 }
 
 .service-card {
-    background: #f8f5ff; /* Light lavender background */
+    background: #f5f5f5; /* Light gray background */
     border-radius: 12px;
     padding: 30px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #d9cfff; /* Lavender border */
+    border: 2px solid #00cc00; /* Green border */
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(138, 123, 224, 0.15); /* Purple shadow on hover */
+    box-shadow: 0 8px 20px rgba(0, 204, 0, 0.3); /* Green shadow on hover */
+    background: #ffffff;
 }
 
 .service-icon {
     font-size: 48px;
     margin-bottom: 15px;
     display: block;
-    color: #8a7be0; /* Purple icons */
+    color: #00cc00; /* Green icons */
 }
 
 .service-card h3 {
     font-size: 20px;
     font-weight: 600;
-    color: #2d2b4e;
+    color: #000000;
     margin-bottom: 10px;
 }
 
 .service-card p {
     font-size: 14px;
-    color: #5f5a8a; /* Muted purple-gray */
+    color: #333333; /* Dark gray text */
     line-height: 1.6;
     margin: 0;
 }
@@ -181,13 +186,13 @@
 /* Featured Section */
 .featured-section {
     padding: 60px 40px;
-    background: #f8f5ff; /* Match dashboard background */
+    background: #ffffff; /* Match dashboard background */
 }
 
 .featured-section h2 {
     font-size: 32px;
     font-weight: 700;
-    color: #2d2b4e;
+    color: #000000;
     margin-bottom: 40px;
 }
 
@@ -204,37 +209,37 @@
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 8px rgba(138, 123, 224, 0.1);
-    border: 1px solid #e6deff;
+    box-shadow: 0 2px 8px rgba(0, 204, 0, 0.1);
+    border: 1px solid #e0e0e0;
 }
 
 .featured-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 24px rgba(138, 123, 224, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 204, 0, 0.3);
 }
 
 .featured-image {
     width: 100%;
     height: 180px;
-    background: linear-gradient(135deg, #c5b4ff, #aa99ff); /* Same lavender gradient */
+    background: linear-gradient(135deg, #000000, #1a1a1a); /* dark gradient */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 80px;
-    color: #3f3a6b;
+    color: #00cc00;
 }
 
 .featured-card h3 {
     font-size: 18px;
     font-weight: 600;
-    color: #2d2b4e;
+    color: #000000;
     padding: 15px 20px 5px;
     margin: 0;
 }
 
 .featured-card p {
     font-size: 14px;
-    color: #5f5a8a;
+    color: #333333;
     padding: 0 20px 15px;
     margin: 0;
 }
@@ -248,7 +253,7 @@
 }
 
 .category-tag {
-    background: #8a7be0; /* Purple tags like in the image */
+    background: #00cc00; /* green tags */
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
@@ -259,18 +264,18 @@
 }
 
 .category-tag:hover {
-    background: #6b5fc7;
+    background: #00aa00;
 }
 
 .category-tag-outline {
     background: transparent;
-    color: #8a7be0;
-    border: 2px solid #8a7be0;
+    color: #00cc00;
+    border: 2px solid #00cc00;
     padding: 6px 14px;
 }
 
 .category-tag-outline:hover {
-    background: #8a7be0;
+    background: #00cc00;
     color: white;
 }
 
@@ -388,13 +393,13 @@
 }
 
 .earnings-card {
-    background: linear-gradient(135deg, #8a7be0, #6b5fc7);
-    color: white;
+    background: linear-gradient(135deg, #00cc00, #00aa00);
+    color: #000000;
 }
 
 .earnings-card h3,
 .earnings-card p {
-    color: white;
+    color: #000000;
 }
 
 /* Orders Section */

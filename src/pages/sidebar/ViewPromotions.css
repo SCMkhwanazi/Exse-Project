@@ -1,17 +1,18 @@
 /* View Promotions Styles - Dashboard Theme */
 .view-promotions {
     min-height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     padding: 0;
     margin: 0;
 }
 
 .vpromo-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 40px;
+    background: #000000;
+    color: #ffffff;
+    padding: 20px 30px;
     text-align: left;
     width: 100%;
+    border-bottom: 1px solid #00cc00;
 }
 
 .vpromo-header h1 {
@@ -46,24 +47,26 @@
 
 .vfilter-btn {
     background: white;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #ccc;
     padding: 10px 20px;
     border-radius: 25px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     transition: all 0.3s ease;
+    color: #000000;
 }
 
 .vfilter-btn:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: #00aa00;
+    color: #000000;
+    background: #f0f0f0;
 }
 
 .vfilter-btn.active {
-    background: #667eea;
-    color: white;
-    border-color: #667eea;
+    background: #00cc00;
+    color: #fff;
+    border-color: #00cc00;
 }
 
 /* Promo Grid */
@@ -75,19 +78,20 @@
 }
 
 .vpromo-card {
-    background: white;
+    background: #ffffff;
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 1px solid #e0e0e0;
 }
 
 .vpromo-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #ccc;
+    background: #ffffff;
 }
 
 .vpromo-top {
@@ -107,8 +111,8 @@
 }
 
 .vdiscount-badge {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+    background: #ffcc00;
+    color: #000000;
     padding: 8px 14px;
     border-radius: 8px;
     font-weight: 700;
@@ -118,7 +122,7 @@
 
 .vpromo-description {
     font-size: 14px;
-    color: #666;
+    color: #333333;
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -128,20 +132,21 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 15px;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid #e0e0e0;
     font-size: 12px;
 }
 
 .vpromo-footer small {
-    color: #999;
+    color: #888888;
 }
 
 .vcategory-tag {
     background: #f0f0f0;
     padding: 4px 12px;
     border-radius: 12px;
-    color: #666;
+    color: #000000;
     font-weight: 500;
+    border: 1px solid #ccc;
 }
 
 /* Expanded Promo */
@@ -175,7 +180,7 @@
 
 .vcode-label {
     font-size: 12px;
-    color: #666;
+    color: #333333;
     font-weight: 600;
 }
 
@@ -186,15 +191,15 @@
     font-family: 'Courier New', monospace;
     font-size: 14px;
     font-weight: 700;
-    color: #667eea;
+    color: #00cc00;
     flex: 1;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #00cc00;
 }
 
 .vcopy-btn {
     width: 100%;
-    background: #667eea;
-    color: white;
+    background: #00cc00;
+    color: #000000;
     border: none;
     padding: 10px;
     border-radius: 8px;
@@ -205,24 +210,25 @@
 }
 
 .vcopy-btn:hover {
-    background: #5568d3;
+    background: #00aa00;
 }
 
 /* Promo Info Section */
 .vpromo-info {
-    background: white;
+    background: #f5f5f5;
     border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 204, 0, 0.1);
     max-width: 600px;
     margin: 0 auto;
+    border: 2px solid #00cc00;
 }
 
 .vpromo-info h3 {
     font-size: 24px;
     margin: 0 0 20px 0;
     text-align: center;
-    color: #000;
+    color: #000000;
 }
 
 .vpromo-info ol {
@@ -236,7 +242,7 @@
     padding: 15px 0 15px 50px;
     position: relative;
     font-size: 16px;
-    color: #555;
+    color: #333333;
     line-height: 1.6;
 }
 
@@ -245,8 +251,8 @@
     position: absolute;
     left: 0;
     top: 12px;
-    background: #667eea;
-    color: white;
+    background: #00cc00;
+    color: #000000;
     width: 32px;
     height: 32px;
     border-radius: 50%;

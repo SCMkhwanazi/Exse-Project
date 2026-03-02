@@ -2,6 +2,18 @@ import React from 'react';
 import './AdminDashboard.css';
 
 const Orders = () => {
+    const sampleOrders = [
+        { id: '#ORD-001', customer: 'Shoprite', date: '2024-01-15', items: 3, total: 'R245.99', status: 'Completed' },
+        { id: '#ORD-002', customer: 'Luka Market', date: '2024-01-14', items: 5, total: 'R578.50', status: 'Pending' },
+        { id: '#ORD-003', customer: 'PicknPay', date: '2024-01-13', items: 2, total: 'R732.00', status: 'Processing' },
+        { id: '#ORD-004', customer: 'Mzamo Traders', date: '2024-01-16', items: 1, total: 'R120.00', status: 'Completed' },
+        { id: '#ORD-005', customer: 'RCO Groceries', date: '2024-01-17', items: 7, total: 'R980.40', status: 'Pending' }
+    ];
+
+    const handleView = (order) => {
+        alert(`Viewing details for ${order.id}`);
+    };
+
     return(
         <div className="admin-page">
             {/* Header */}
@@ -35,33 +47,17 @@ const Orders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>#ORD-001</td>
-                            <td>Shoprite</td>
-                            <td>2024-01-15</td>
-                            <td>3 items</td>
-                            <td>R245.99</td>
-                            <td><span className="status-badge completed">Completed</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-002</td>
-                            <td>Luka Market</td>
-                            <td>2024-01-14</td>
-                            <td>5 items</td>
-                            <td>R578.50</td>
-                            <td><span className="status-badge pending">Pending</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#ORD-003</td>
-                            <td>PicknPay</td>
-                            <td>2024-01-13</td>
-                            <td>2 items</td>
-                            <td>R732.00</td>
-                            <td><span className="status-badge active">Processing</span></td>
-                            <td><button className="admin-btn">View</button></td>
-                        </tr>
+                        {sampleOrders.map(order => (
+                            <tr key={order.id}>
+                                <td>{order.id}</td>
+                                <td>{order.customer}</td>
+                                <td>{order.date}</td>
+                                <td>{order.items} items</td>
+                                <td>{order.total}</td>
+                                <td><span className={`status-badge ${order.status === 'Completed' ? 'completed' : order.status === 'Pending' ? 'pending' : 'active'}`}>{order.status}</span></td>
+                                <td><button className="admin-btn" onClick={() => handleView(order)}>View</button></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

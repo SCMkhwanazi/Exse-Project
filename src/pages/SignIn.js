@@ -106,7 +106,7 @@ export default SignIn;
 
 const styles = {
   pageContainer: {
-    backgroundColor: '#8a7be0',
+    backgroundColor: '#ffffff',
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
@@ -126,11 +126,11 @@ const styles = {
   },
   
   toast: {
-    backgroundColor: '#bb79b8', // Green for success
+    backgroundColor: '#00cc00',
     color: 'white',
     padding: '16px 30px',
     borderRadius: '50px',
-    boxShadow: '0 5px 20px rgba(40, 167, 69, 0.3)',
+    boxShadow: '0 5px 20px rgba(0, 204, 0, 0.3)',
     display: 'flex',
     alignItems: 'center',
     minWidth: '300px',
@@ -160,15 +160,15 @@ const styles = {
   
   content: {
     backgroundColor: 'white',
-    padding: '50px 40px',
-    borderRadius: '20px',
-    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)'
+    padding: '40px 30px',
+    borderRadius: '10px',
+    boxShadow: '0 5px 20px rgba(0, 0, 0, 0.1)'
   },
   
   title: {
     fontSize: '36px',
     fontWeight: '700',
-    color: '#2d2b4e',
+    color: '#000000',
     textAlign: 'center',
     marginBottom: '40px'
   },
@@ -181,7 +181,7 @@ const styles = {
     display: 'block',
     fontSize: '14px',
     fontWeight: '600',
-    color: '#2d2b4e',
+    color: '#000000',
     marginBottom: '8px'
   },
   
@@ -189,11 +189,11 @@ const styles = {
     width: '100%',
     padding: '12px 16px',
     fontSize: '15px',
-    border: '2px solid #e0e0e0',
-    borderRadius: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
     outline: 'none',
     transition: 'border-color 0.3s ease',
-    backgroundColor: '#f8f9fa'
+    backgroundColor: '#f5f5f5'
   },
   
   passwordContainer: {
@@ -205,11 +205,11 @@ const styles = {
     width: '100%',
     padding: '12px 45px 12px 16px',
     fontSize: '15px',
-    border: '2px solid #e0e0e0',
+    border: '1px solid #ccc',
     borderRadius: '10px',
     outline: 'none',
     transition: 'border-color 0.3s ease',
-    backgroundColor: '#f8f9fa'
+    backgroundColor: '#f5f5f5'
   },
   
   toggleIcon: {
@@ -218,7 +218,7 @@ const styles = {
     top: '50%',
     transform: 'translateY(-50%)',
     cursor: 'pointer',
-    color: '#8a7be0',
+    color: '#00cc00',
     fontSize: '18px',
     zIndex: 10
   },
@@ -229,7 +229,7 @@ const styles = {
   },
   
   forgotText: {
-    color: '#8a7be0',
+    color: '#00cc00',
     fontSize: '14px',
     textDecoration: 'none',
     fontWeight: '500',
@@ -239,8 +239,8 @@ const styles = {
   signInButton: {
     width: '100%',
     padding: '14px',
-    backgroundColor: '#8a7be0',
-    color: 'white',
+    backgroundColor: '#00cc00',
+    color: '#ffffff',
     border: 'none',
     borderRadius: '10px',
     fontSize: '16px',
@@ -254,11 +254,11 @@ const styles = {
   signupLink: {
     textAlign: 'center',
     fontSize: '15px',
-    color: '#5f5a8a'
+    color: '#000000'
   },
   
   signupText: {
-    color: '#8a7be0',
+    color: '#00cc00',
     textDecoration: 'none',
     fontWeight: '600',
     marginLeft: '5px'

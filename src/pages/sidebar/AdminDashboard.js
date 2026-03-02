@@ -10,6 +10,30 @@ const AdminDashboard = () => {
             <p>View orders,stock and operations</p>
         </div>
 
+        <div className="header-actions">
+            <button className="admin-btn">New demo order</button>
+            <button className="admin-btn-outline">Refresh</button>
+        </div>
+        {/* Info Row (mirrors screenshot boxes) */}
+        <div className="info-row">
+            <div className="info-card">
+                <h4>Live Orders <span className="badge live">Live</span></h4>
+                <p><strong>3</strong> Orders not yet delivered/cancelled.</p>
+            </div>
+            <div className="info-card">
+                <h4>Low Stock Items <span className="badge action">Needs action</span></h4>
+                <p><strong>7</strong> items below threshold.</p>
+            </div>
+            <div className="info-card">
+                <h4>Today Revenue <span className="badge tracked">Tracked</span></h4>
+                <p>R<strong>154.96</strong> Sum of delivered orders today.</p>
+            </div>
+            <div className="info-card">
+                <h4>Avg Fulfillment ETA <span className="badge estimate">Estimate</span></h4>
+                <p><strong>38 min</strong> Based on active orders.</p>
+            </div>
+        </div>
+
         {/* Stats Cards */}
         <div className="stats-grid">
             <div className="stat-card">
@@ -78,6 +102,22 @@ const AdminDashboard = () => {
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        {/* Operations Snapshot & Quick Actions */}
+        <div className="content-section">
+            <h2>Operations snapshot</h2>
+            <p>Quick actions for busy times.</p>
+            <div className="ops-grid">
+                <div className="ops-item">
+                    <label><input type="checkbox" /> Auto-Assign Drivers</label>
+                    <small>Toggle simulation of driver assignment.</small>
+                </div>
+                <div className="ops-item">
+                    <label><input type="checkbox" /> Rush Mode</label>
+                    <small>Shorten ETA across new orders.</small>
+                </div>
+            </div>
         </div>
 
         {/* Quick Actions */}

@@ -1,6 +1,6 @@
 /* Shared auth styles with purple/dashboard theme */
 .auth-background {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,31 +9,32 @@
 }
 
 .auth-form {
-    background: white;
-    padding: 60px 40px;
-    max-width: 500px;
+    background: #ffffff;
+    padding: 40px 30px;
+    max-width: 400px;
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    color: #212529;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: #000000;
+    border: 1px solid #ccc;
 }
 
 .auth-form h1 {
     margin-bottom: 30px;
     text-align: center;
     font-weight: 700;
-    color: #333;
+    color: #000000;
 }
 
 .btn-purple {
-    background: #667eea;
-    color: white;
+    background: #00cc00;
+    color: #ffffff;
     border: none;
 }
 
 .btn-purple:hover {
-    background: #5568d3;
-    color: white;
+    background: #0056b3;
+    color: #ffffff;
 }
 
 .toggle-icon {
@@ -58,13 +59,14 @@
 }
 
 .welcome-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #ffffff;
+    color: #000000;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .welcome-content {
@@ -73,13 +75,13 @@
 }
 
 .welcome-content h1 {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
 }
 
 .welcome-content p {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 20px;
 }
 
@@ -98,7 +100,7 @@
     margin-top: auto;
     width: 100%;
     text-align: center;
-    color: #ccc;
+    color: #666;
     font-size: 14px;
 }
 

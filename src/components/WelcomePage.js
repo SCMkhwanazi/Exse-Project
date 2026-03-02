@@ -117,12 +117,12 @@ const WelcomePage = () => {
 
 const styles = {
   pageWrapper: {
-    backgroundColor: '#f8f5ff', // Light lavender background
+    backgroundColor: '#ffffff', // white background
     minHeight: '100vh'
   },
   
   heroSection: {
-    background: 'linear-gradient(135deg, #8a7be0 0%, #6b5fc7 100%)', // Purple gradient
+    background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)', // black gradient
     minHeight: '500px',
     position: 'relative',
     display: 'flex',
@@ -159,8 +159,8 @@ const styles = {
   
   signInBtn: {
     backgroundColor: 'white',
-    color: '#8a7be0',
-    border: 'none',
+    color: '#00cc00',
+    border: '2px solid #00cc00',
     padding: '15px 40px',
     borderRadius: '50px',
     fontSize: '18px',
@@ -173,7 +173,7 @@ const styles = {
   signUpBtn: {
     backgroundColor: 'transparent',
     color: 'white',
-    border: '2px solid white',
+    border: '2px solid #00cc00',
     padding: '15px 40px',
     borderRadius: '50px',
     fontSize: '18px',
@@ -191,30 +191,30 @@ const styles = {
   aboutImagePlaceholder: {
     width: '100%',
     height: '350px',
-    background: 'linear-gradient(135deg, #e0d3ff 0%, #c5b4ff 100%)',
+    background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
     borderRadius: '20px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    boxShadow: '0 10px 30px rgba(138, 123, 224, 0.2)'
+    boxShadow: '0 10px 30px rgba(0, 204, 0, 0.2)'
   },
   
   aboutIcon: {
     fontSize: '120px',
-    color: '#8a7be0'
+    color: '#00cc00'
   },
   
   aboutTitle: {
     fontSize: '42px',
     fontWeight: '700',
-    color: '#2d2b4e',
+    color: '#000000',
     marginBottom: '15px'
   },
   
   aboutDivider: {
     width: '80px',
     height: '4px',
-    backgroundColor: '#8a7be0',
+    backgroundColor: '#00cc00',
     marginBottom: '25px',
     borderRadius: '2px'
   },
@@ -222,7 +222,7 @@ const styles = {
   aboutText: {
     fontSize: '18px',
     lineHeight: '1.8',
-    color: '#5f5a8a',
+    color: '#333333',
     marginBottom: '30px'
   },
   
@@ -237,18 +237,19 @@ const styles = {
     alignItems: 'center',
     gap: '10px',
     fontSize: '16px',
-    color: '#2d2b4e'
+    color: '#000000'
   },
   
   featureIcon: {
-    color: '#8a7be0',
+    color: '#00cc00',
     fontSize: '24px'
   },
   
   footer: {
-    backgroundColor: '#2d2b4e', // Deep purple
+    backgroundColor: '#000000',
     color: 'white',
-    padding: '60px 0 30px'
+    padding: '60px 0 30px',
+    borderTop: '4px solid #00cc00'
   },
   
   footerTitle: {
@@ -259,7 +260,7 @@ const styles = {
   },
   
   footerText: {
-    color: '#b4a9e0',
+    color: '#ebe9f0',
     lineHeight: '1.6'
   },
   
@@ -271,7 +272,7 @@ const styles = {
   },
   
   contactInfo: {
-    color: '#b4a9e0',
+    color: '#f0f0f0',
     lineHeight: '2'
   },
   
@@ -295,14 +296,14 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
-    color: '#b4a9e0'
+    color: '#e2e2e4'
   },
   
   backToTop: {
-    color: '#ffffff',
+    color: '#f8f6f6',
     textDecoration: 'none',
     padding: '8px 20px',
-    backgroundColor: 'rgba(138, 123, 224, 0.3)',
+    backgroundColor: 'rgba(7, 7, 7, 0.93)',
     borderRadius: '25px',
     transition: 'background-color 0.3s ease'
   }
