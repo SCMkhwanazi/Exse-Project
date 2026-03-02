@@ -388,3 +388,289 @@
         max-width: 100%;
     }
 }
+
+/* Settings Page Styles */
+.settings-container {
+    padding: 0 30px 30px;
+    max-width: 1200px;
+}
+
+.settings-section {
+    margin-bottom: 30px;
+}
+
+.settings-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00cc00;
+}
+
+.settings-section h2 i {
+    color: #00cc00;
+}
+
+.settings-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333333;
+    background: #f5f5f5;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #00cc00;
+    box-shadow: 0 0 0 3px rgba(0, 204, 0, 0.2);
+    background: #ffffff;
+}
+
+/* Toggle Switch */
+.toggle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.toggle-item:last-child {
+    border-bottom: none;
+}
+
+.toggle-info {
+    flex: 1;
+}
+
+.toggle-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.toggle-description {
+    display: block;
+    font-size: 13px;
+    color: #666666;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    display: inline-block;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 26px;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #00cc00;
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.toggle-switch input:disabled + .slider {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Action Items */
+.action-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.action-item:last-child {
+    border-bottom: none;
+}
+
+.action-item.danger .action-label {
+    color: #ff4d4f;
+}
+
+.action-item.danger .action-description {
+    color: #ff6b6b;
+}
+
+.action-info {
+    flex: 1;
+}
+
+.action-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 4px;
+}
+
+.action-description {
+    display: block;
+    font-size: 13px;
+    color: #666666;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #00cc00;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background: #00aa00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 204, 0, 0.3);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid #ccc;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+.btn-danger {
+    background: #ff4d4f;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-danger:hover {
+    background: #ff3333;
+}
+
+/* Settings Actions */
+.settings-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .settings-container {
+        padding: 0 20px 20px;
+    }
+
+    .toggle-item,
+    .action-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .toggle-switch {
+        align-self: flex-end;
+    }
+
+    .settings-actions {
+        flex-direction: column;
+    }
+
+    .settings-actions button {
+        width: 100%;
+        justify-content: center;
+    }
+}
