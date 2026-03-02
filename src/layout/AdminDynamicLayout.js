@@ -39,8 +39,8 @@ const AdminDynamicLayout = () => {
       {/* Sidebar */}
       <div style={styles.sidebar}>
         <div style={styles.sidebarHeader}>
-          <h4 style={styles.sidebarTitle}>Ek'se</h4>
-          <p style={styles.sidebarSubtitle}>Admin Panel</p>
+          <h4 style={styles.sidebarTitle}>Exse</h4>
+          <p style={styles.sidebarSubtitle}>ADMIN</p>
         </div>
 
         <ul className="nav flex-column">
@@ -169,7 +169,7 @@ const AdminDynamicLayout = () => {
               window.location.href = '/';
             }}
           >
-            <i className="bi bi-box-arrow-right me-2"></i> Sign out
+            <i className="bi bi-box-arrow-right me-2"></i> Logout
           </button>
         </div>
       </div>
@@ -208,9 +208,9 @@ const styles = {
     textDecoration: 'none'
   },
   logoutBtn: {
-    backgroundColor: '#ffffff',
-    color: '#333333',
-    border: '1px solid #ccc',
+    backgroundColor: '#000000',
+    color: '#fffdfd',
+    border: '1px solid #0af031',
     fontWeight: '600',
     transition: 'background 0.2s ease'
   },

@@ -106,7 +106,7 @@ export default SignIn;
 
 const styles = {
   pageContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#141414',
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',

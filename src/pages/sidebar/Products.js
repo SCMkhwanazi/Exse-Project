@@ -183,9 +183,12 @@ const Products = () => {
       {/* Modal for Add/Edit */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <h2>{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
-            <form onSubmit={handleSubmit}>
+          <div className="product-modal" onClick={e => e.stopPropagation()}>
+            <div className="product-modal-header">
+              <h2>{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
+              <button className="modal-close" onClick={() => setShowModal(false)}>×</button>
+            </div>
+            <form onSubmit={handleSubmit} className="product-form">
               <div className="form-group">
                 <label>Product Name</label>
                 <input
